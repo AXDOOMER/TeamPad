@@ -8,6 +8,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
+import java.io.*;
 //import java.awt.image.BufferedImage;
 
 public class Editor extends JFrame {
@@ -15,6 +17,12 @@ public class Editor extends JFrame {
 	static Editor mainWindowReference;
 	static String language = "English";
 	int tabSize = 4;	// Get the default tab size			int tabSize = textarea.getTabSize(); // 8
+	String defaultFont = "Courier New";
+	int textSize = 14;		// zoom
+	boolean lineNumbering = false;		// lines
+	boolean lineWarp = false;		// wrap
+	boolean statusBar = true;		// stats
+	Map<String, String> configs = new HashMap<String, String>();
 	
 	public static String GetStringForLang(String textId) {
 		
@@ -84,7 +92,36 @@ public class Editor extends JFrame {
 	
 	public Editor() {
 		mainWindowReference = this;
-	
+		
+		// Load configuration from file
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("config.txt"));
+			String ligne;
+			while ((ligne = reader.readLine()) != null) {
+				if (ligne.length() > 0)
+				{
+					String[] parts = ligne.split("\t");
+					System.out.println(parts[0] + "=" + parts[1]);
+					configs.put(parts[0], parts[1]);
+				}				
+			}
+			reader.close();
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.err.println("The configuration file contains errors.");
+		} catch (IOException ioe) {
+			System.err.println(ioe.getMessage());
+			//System.exit(1);
+		}
+
+		// Apply the settings loaded from the configuration file
+		tabSize = Integer.parseInt(configs.get("tab"));
+		defaultFont = configs.get("font");
+		language = configs.get("lang");
+		textSize = Integer.parseInt(configs.get("zoom"));
+		lineNumbering = Boolean.parseBoolean(configs.get("lines"));
+		lineWarp = Boolean.parseBoolean(configs.get("warp"));
+		statusBar = Boolean.parseBoolean(configs.get("stats"));
+		
 		// Layout
 		JPanel mainFrame = new JPanel();
 		mainFrame.setLayout(new FlowLayout());
@@ -102,7 +139,7 @@ public class Editor extends JFrame {
 		//txtArea.setLocation(0, 0);
 		//txtArea.setPreferredSize(new Dimension(640, 480));
 		txtArea.setTabSize(tabSize);
-		txtArea.setFont(new Font("Courier New", Font.PLAIN, 14));
+		txtArea.setFont(new Font(defaultFont, Font.PLAIN, textSize));
 		// textArea.setLineWrap( true );
 		// textArea.setWrapStyleWord( true );
 
@@ -141,8 +178,8 @@ public class Editor extends JFrame {
 		fileMenu.add(newAction);
 		fileMenu.add(openAction);
 		fileMenu.add(saveAction);
-		fileMenu.add(saveAllAction);
 		fileMenu.add(saveAsAction);
+		fileMenu.add(saveAllAction);
 		fileMenu.addSeparator();	// Separator
 		fileMenu.add(closeAction);
 		fileMenu.add(exitAction);
@@ -177,6 +214,8 @@ public class Editor extends JFrame {
 		JMenu optionMenu = new JMenu("Option");
 		menuBar.add(optionMenu);
 		// Create the items of the option menu
+		JMenuItem increaseAction = new JMenuItem("Increase text size");
+		JMenuItem decreaseAction = new JMenuItem("Decrease text size");
 		JCheckBoxMenuItem lineNumberingAction = new JCheckBoxMenuItem("Line numbering");
 		JCheckBoxMenuItem wordWarpAction = new JCheckBoxMenuItem("Word warp");
 		JCheckBoxMenuItem statusBarAction = new JCheckBoxMenuItem("Status bar");
@@ -188,24 +227,30 @@ public class Editor extends JFrame {
 		JMenu fontsMenu = new JMenu("Font");
 		ButtonGroup fontsGroup = new ButtonGroup();
 		String[] fonts = {"Andale Mono", "Arial", "Consolas", "Courier New", "DejaVu Sans Mono", 
-		"Droid Sans Mono", "Fixedsys", "Lucida Console", "Monaco", "Source Code Pro", "System"};
-		
+		"Droid Sans Mono", "Fixedsys", "Liberation Mono", "Lucida Console", "Monaco", "Source Code Pro", "System"};
+
+		String[] fontlist=(GraphicsEnvironment.getLocalGraphicsEnvironment()).getAvailableFontFamilyNames();
+		ArrayList availfonts = new ArrayList<String>(Arrays.asList(fontlist));
+
 		for (int i = 0; i < fonts.length; i++) {
-			// Add font to menu
-			JRadioButtonMenuItem newFont = new JRadioButtonMenuItem(fonts[i]);
-			fontsGroup.add(newFont);
-			fontsMenu.add(newFont);
+			if (availfonts.contains(fonts[i]))
+			{
+				// Add font to menu
+				JRadioButtonMenuItem newFont = new JRadioButtonMenuItem(fonts[i]);
+				fontsGroup.add(newFont);
+				fontsMenu.add(newFont);
 			
-			if (newFont.getText() == "Courier New") {
-				newFont.setSelected(true);
-			}
-			
-			// Add an action on fonts items
-			newFont.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg) {
-					txtArea.setFont(new Font(((JRadioButtonMenuItem) arg.getSource()).getText(), Font.PLAIN, 14));
+				if (newFont.getText().equals(defaultFont)) {
+					newFont.setSelected(true);
 				}
-			});
+			
+				// Add an action on fonts items
+				newFont.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg) {
+						txtArea.setFont(new Font(((JRadioButtonMenuItem) arg.getSource()).getText(), Font.PLAIN, textSize));
+					}
+				});
+			}
 		}
 
 		// Languages
@@ -219,24 +264,29 @@ public class Editor extends JFrame {
 			languagesGroup.add(newLanguage);
 			languagesMenu.add(newLanguage);
 			
-			if (newLanguage.getText() == "English") {
+			if (newLanguage.getText().equals(language)) {
 				newLanguage.setSelected(true);
 			}
 			
 			// Add an action on languages items
 			newLanguage.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg) {
-					language = ((JRadioButtonMenuItem) arg.getSource()).getText();
-					JOptionPane.showMessageDialog(mainWindowReference, GetStringForLang("RestartTranslate"), GetStringForLang("Notice"), JOptionPane.INFORMATION_MESSAGE);
+					if (language != ((JRadioButtonMenuItem) arg.getSource()).getText()) {
+						language = ((JRadioButtonMenuItem) arg.getSource()).getText();
+						JOptionPane.showMessageDialog(mainWindowReference, GetStringForLang("RestartTranslate"), GetStringForLang("Notice"), JOptionPane.INFORMATION_MESSAGE);
+					}
 				}
 			});
 		}
 		
 		// Add the items to the option menu
+		optionMenu.add(increaseAction);
+		optionMenu.add(decreaseAction);
+		optionMenu.addSeparator();		// Separator
 		optionMenu.add(lineNumberingAction);
 		optionMenu.add(wordWarpAction);
 		optionMenu.add(statusBarAction);
-		optionMenu.addSeparator();
+		optionMenu.addSeparator();		// Separator
 		optionMenu.add(colorsAction);
 		/*optionMenu.add(fontAction);*/
 		optionMenu.add(fontsMenu);
