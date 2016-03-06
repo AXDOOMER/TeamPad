@@ -1,0 +1,8 @@
+tab	4
+font	Consolas
+lang	French
+zoom	14
+lines	true
+warp	true
+stats	true
+
