@@ -33,6 +33,8 @@ public class Editor extends JFrame {
 				case "Copying": translation = "Written by: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015\n\nDistributed under the GNU GPL version 3"; break;
 				
 				case "Lenght": translation = "Lenght"; break;
+				case "Notice": translation = "Notice"; break;
+				case "RestartTranslate": translation = "The interface will be completly translated only once you will restart the program."; break;
 			}
 			
 		} else if (language.equals("French")) {
@@ -44,6 +46,8 @@ public class Editor extends JFrame {
 				case "Copying": translation = "Écrit par: \nAlexandre-Xavier Labonté-Lamoureux\nDroits d'auteur(c) 2015\n\nDistribué sous la GNU GPL version 3"; break;
 				
 				case "Lenght": translation = "Longueur"; break;
+				case "Notice": translation = "Avertissement"; break;
+				case "RestartTranslate": translation = "L'interface sera complètement traduite que lorsque vous aurez redémarré le logicel."; break;
 			}
 			
 		} else if (language.equals("German")) {
@@ -55,6 +59,7 @@ public class Editor extends JFrame {
 				case "Copying": translation = "Geschrieben von: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015\n\nUnter der GNU GPL version 3"; break;
 			
 				case "Lenght": translation = "Länge"; break;
+				case "Notice": translation = "Beachten"; break;
 			}
 			
 		} else if (language.equals("Russian")) {
@@ -66,6 +71,7 @@ public class Editor extends JFrame {
 				case "Copying": translation = "написано: \nAlexandre-Xavier Labonté-Lamoureux\nАвторские права 2015\n\nРаспространяется под GNU GPL версии 3"; break;
 			
 				case "Lenght": translation = "длина"; break;
+				case "Notice": translation = "уведомление"; break;
 			}
 		} else {
 			
@@ -175,16 +181,67 @@ public class Editor extends JFrame {
 		JCheckBoxMenuItem wordWarpAction = new JCheckBoxMenuItem("Word warp");
 		JCheckBoxMenuItem statusBarAction = new JCheckBoxMenuItem("Status bar");
 		JMenuItem colorsAction = new JMenuItem("Color settings");
-		JMenuItem fontAction = new JMenuItem("Font");
-		JMenuItem languageAction = new JMenuItem("Language");
+		/*JMenuItem fontAction = new JMenuItem("Font");*/
+		/*JMenuItem languageAction = new JMenuItem("Language");*/
+		
+		// Fonts
+		JMenu fontsMenu = new JMenu("Font");
+		ButtonGroup fontsGroup = new ButtonGroup();
+		String[] fonts = {"Andale Mono", "Arial", "Consolas", "Courier New", "DejaVu Sans Mono", 
+		"Droid Sans Mono", "Fixedsys", "Lucida Console", "Monaco", "Source Code Pro", "System"};
+		
+		for (int i = 0; i < fonts.length; i++) {
+			// Add font to menu
+			JRadioButtonMenuItem newFont = new JRadioButtonMenuItem(fonts[i]);
+			fontsGroup.add(newFont);
+			fontsMenu.add(newFont);
+			
+			if (newFont.getText() == "Courier New") {
+				newFont.setSelected(true);
+			}
+			
+			// Add an action on fonts items
+			newFont.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg) {
+					txtArea.setFont(new Font(((JRadioButtonMenuItem) arg.getSource()).getText(), Font.PLAIN, 14));
+				}
+			});
+		}
+
+		// Languages
+		JMenu languagesMenu = new JMenu("Language");
+		ButtonGroup languagesGroup = new ButtonGroup();
+		String[] languages = {"Chinese", "English", "French", "German", "Japanese", "Spanish", "Russian"};
+		
+		for (int i = 0; i < languages.length; i++) {
+			// Add the languages to the menu
+			JRadioButtonMenuItem newLanguage = new JRadioButtonMenuItem(languages[i]);
+			languagesGroup.add(newLanguage);
+			languagesMenu.add(newLanguage);
+			
+			if (newLanguage.getText() == "English") {
+				newLanguage.setSelected(true);
+			}
+			
+			// Add an action on languages items
+			newLanguage.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg) {
+					language = ((JRadioButtonMenuItem) arg.getSource()).getText();
+					JOptionPane.showMessageDialog(mainWindowReference, GetStringForLang("RestartTranslate"), GetStringForLang("Notice"), JOptionPane.INFORMATION_MESSAGE);
+				}
+			});
+		}
+		
 		// Add the items to the option menu
 		optionMenu.add(lineNumberingAction);
 		optionMenu.add(wordWarpAction);
 		optionMenu.add(statusBarAction);
 		optionMenu.addSeparator();
 		optionMenu.add(colorsAction);
-		optionMenu.add(fontAction);
-		optionMenu.add(languageAction);
+		/*optionMenu.add(fontAction);*/
+		optionMenu.add(fontsMenu);
+		/*optionMenu.add(languageAction);*/
+		optionMenu.add(languagesMenu);
 		
 		// Team menu
 		JMenu teamMenu = new JMenu("Team");
