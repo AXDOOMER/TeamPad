@@ -10,6 +10,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.io.*;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
+import javax.swing.text.BadLocationException;
 //import java.awt.image.BufferedImage;
 
 public class Editor extends JFrame {
@@ -41,6 +44,7 @@ public class Editor extends JFrame {
 				case "Copying": translation = "Written by: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015\n\nDistributed under the GNU GPL version 3"; break;
 				
 				case "Lenght": translation = "Lenght"; break;
+				case "Line": translation = "Line"; break;
 				case "Notice": translation = "Notice"; break;
 				case "RestartTranslate": translation = "The interface will be completly translated only once you will restart the program."; break;
 			}
@@ -54,6 +58,7 @@ public class Editor extends JFrame {
 				case "Copying": translation = "Écrit par: \nAlexandre-Xavier Labonté-Lamoureux\nDroits d'auteur(c) 2015\n\nDistribué sous la GNU GPL version 3"; break;
 				
 				case "Lenght": translation = "Longueur"; break;
+				case "Line": translation = "Ligne"; break;
 				case "Notice": translation = "Avertissement"; break;
 				case "RestartTranslate": translation = "L'interface sera complètement traduite que lorsque vous aurez redémarré le logicel."; break;
 			}
@@ -129,9 +134,10 @@ public class Editor extends JFrame {
 		//this.add(this, BorderLayout.CENTER);
 	
 		// Set what to display, do a label in the main area
-		JLabel emptyLabel = new JLabel("label");
-		//emptyLabel.setLocation(300, 0);
-		emptyLabel.setPreferredSize(new Dimension(250, 20));
+		JLabel lengthLabel = new JLabel("label");
+		JLabel lineLabel = new JLabel("label2");
+		lengthLabel.setPreferredSize(new Dimension(250, 20));
+		lineLabel.setPreferredSize(new Dimension(100, 20));
 		//frame.setDefaultLookAndFeelDecorated(true);
 		
 		// Add a textarea
@@ -147,7 +153,8 @@ public class Editor extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(txtArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED/*, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS*/);
 		scrollPane.setPreferredSize(new Dimension(300, 200));
 		mainFrame.add(scrollPane);
-		mainFrame.add(emptyLabel);
+		mainFrame.add(lengthLabel);
+		mainFrame.add(lineLabel);
 		
 		// Add the layout to the frame
 		this.add(mainFrame);
@@ -197,6 +204,7 @@ public class Editor extends JFrame {
 		JMenuItem selectLineAction = new JMenuItem("Select Line");
 		JMenuItem findAction = new JMenuItem("Find");
 		JMenuItem replaceAction = new JMenuItem("Replace");
+		JMenuItem encryptAction = new JMenuItem("Encrypt/Encode");
 		// Add the items to the edit menu
 		editMenu.add(undoAction);
 		editMenu.add(redoAction);
@@ -209,6 +217,8 @@ public class Editor extends JFrame {
 		editMenu.add(selectLineAction);
 		editMenu.add(findAction);
 		editMenu.add(replaceAction);
+		editMenu.addSeparator();	// Separator
+		editMenu.add(encryptAction);	// Call a mudular class that takes a string to offers BlowFish, XOR, DES, AES256 and Base64. 
 		
 		// Option menu
 		JMenu optionMenu = new JMenu("Option");
@@ -338,19 +348,29 @@ public class Editor extends JFrame {
 		/*
 		txtArea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				emptyLabel.setText("label " + txtArea.getText());
+				lengthLabel.setText("label " + txtArea.getText());
 			}
 		});
 		*/
 		txtArea.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				emptyLabel.setText(GetStringForLang("Lenght") + " " + (txtArea.getText()).length());
+				lengthLabel.setText(GetStringForLang("Lenght") + " " + (txtArea.getText()).length());
 			}
 			public void insertUpdate(DocumentEvent e) {
-				emptyLabel.setText(GetStringForLang("Lenght") + " " + (txtArea.getText()).length());
+				lengthLabel.setText(GetStringForLang("Lenght") + " " + (txtArea.getText()).length());
 			}
 			public void removeUpdate(DocumentEvent e) {
-				emptyLabel.setText(GetStringForLang("Lenght") + " " + (txtArea.getText()).length());
+				lengthLabel.setText(GetStringForLang("Lenght") + " " + (txtArea.getText()).length());
+			}
+		});
+		
+		txtArea.addCaretListener(new CaretListener() {
+			public void caretUpdate(CaretEvent e) {
+				try {
+					lineLabel.setText(GetStringForLang("Line") + " " + txtArea.getLineOfOffset(txtArea.getCaretPosition()));
+				} catch (BadLocationException ex) {
+					System.err.println(ex.getMessage());
+				}
 			}
 		});
 	}
@@ -359,6 +379,5 @@ public class Editor extends JFrame {
 		Editor window = new Editor();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
-		
 	}
 }
