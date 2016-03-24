@@ -28,6 +28,7 @@ public class Editor extends JFrame {
 	boolean lineWarp = false;		// wrap
 	boolean statusBar = true;		// stats
 	Map<String, String> configs = new HashMap<String, String>();
+	String lastSelectedDirectory = "";
 	
 	public static String GetStringForLang(String textId) {
 		
@@ -192,6 +193,31 @@ public class Editor extends JFrame {
 		fileMenu.addSeparator();	// Separator
 		fileMenu.add(closeAction);
 		fileMenu.add(exitAction);
+		
+		openAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+				JFileChooser fileChooser = new JFileChooser();
+				
+				if (lastSelectedDirectory != "") {
+					fileChooser.setCurrentDirectory(new File(lastSelectedDirectory));
+				}
+				
+				int returnVal = fileChooser.showOpenDialog(mainWindowReference);
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					try {
+						System.out.println("Opening file: " + fileChooser.getSelectedFile().getName());
+						lastSelectedDirectory = fileChooser.getCurrentDirectory().toString();
+						BufferedReader reader = new BufferedReader(new FileReader(fileChooser.getSelectedFile().getAbsolutePath()));
+						
+						txtArea.setText("");
+						txtArea.read(reader, null);
+						reader.close();
+					} catch (IOException ex) {
+						System.err.println(ex.getMessage());
+					}
+				}
+			}
+		});
 
 		// Edit menu
 		JMenu editMenu = new JMenu("Edit");
@@ -461,6 +487,14 @@ public class Editor extends JFrame {
 	}
 	
 	public static void main(String[] args) {
+		try {
+			//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+		} catch (Exception ex) {
+			System.err.println(ex.getMessage());
+		}
+		
 		Editor window = new Editor();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
