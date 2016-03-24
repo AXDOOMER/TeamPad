@@ -14,6 +14,8 @@ import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.text.BadLocationException;
 //import java.awt.image.BufferedImage;
+import java.security.*;
+import javax.xml.bind.DatatypeConverter;
 
 public class Editor extends JFrame {
 	
@@ -202,9 +204,7 @@ public class Editor extends JFrame {
 		JMenuItem pasteAction = new JMenuItem("Paste");
 		JMenuItem selectAllAction = new JMenuItem("Select All");
 		JMenuItem selectLineAction = new JMenuItem("Select Line");
-		JMenuItem findAction = new JMenuItem("Find");
-		JMenuItem replaceAction = new JMenuItem("Replace");
-		JMenuItem encryptAction = new JMenuItem("Encrypt/Encode");
+		JMenuItem findAction = new JMenuItem("Find and replace");
 		// Add the items to the edit menu
 		editMenu.add(undoAction);
 		editMenu.add(redoAction);
@@ -216,9 +216,6 @@ public class Editor extends JFrame {
 		editMenu.add(selectAllAction);
 		editMenu.add(selectLineAction);
 		editMenu.add(findAction);
-		editMenu.add(replaceAction);
-		editMenu.addSeparator();	// Separator
-		editMenu.add(encryptAction);	// Call a mudular class that takes a string to offers BlowFish, XOR, DES, AES256 and Base64. 
 		
 		// Option menu
 		JMenu optionMenu = new JMenu("Option");
@@ -303,6 +300,23 @@ public class Editor extends JFrame {
 		/*optionMenu.add(languageAction);*/
 		optionMenu.add(languagesMenu);
 		
+		// Text operations menu
+		JMenu operationsMenu = new JMenu("Operations");
+		menuBar.add(operationsMenu);
+		// Create the items of the operations menu
+		JMenuItem encryptionAction = new JMenuItem("Encrypt");		// Offers BlowFish, XOR, DES, AES256, etc. 
+		JMenuItem encodeAction = new JMenuItem("Encode");		// Base64 en URL encoding/decoding
+		JMenuItem hashesAction = new JMenuItem("Hash");		// Show hashes
+		JMenuItem countAction = new JMenuItem("Counts");		// Word count, line count, caracter count, file size, etc.
+		JMenuItem runAction = new JMenuItem("Run");
+		// Add
+		operationsMenu.add(encryptionAction);
+		operationsMenu.add(encodeAction);
+		operationsMenu.add(hashesAction);
+		operationsMenu.add(countAction);
+		operationsMenu.addSeparator();		// Separator
+		operationsMenu.add(runAction);
+		
 		// Team menu
 		JMenu teamMenu = new JMenu("Team");
 		menuBar.add(teamMenu);
@@ -338,10 +352,76 @@ public class Editor extends JFrame {
 			}
 		});
 		
+		hashesAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+				try {
+					String[] functions = {"MD5", "SHA-1", "SHA-256"};
+					
+					String hashes = "UTF-8 Encoded: \n\n";
+					byte[] bytesUTF = txtArea.getText().getBytes("UTF-8");
+					
+					for (int i = 0; i < functions.length; i++) {
+						MessageDigest digest = MessageDigest.getInstance(functions[i]);
+						byte[] bytes = digest.digest(bytesUTF);
+						String str = DatatypeConverter.printHexBinary(bytes);
+						hashes += functions[i] + ":  " + str + '\n';
+					}
+					
+					hashes += "\n\n" + "ASCII Encoded: \n\n";
+					bytesUTF = txtArea.getText().getBytes("US-ASCII");
+					
+					for (int i = 0; i < functions.length; i++) {
+						MessageDigest digest = MessageDigest.getInstance(functions[i]);
+						byte[] bytes = digest.digest(bytesUTF);
+						String str = DatatypeConverter.printHexBinary(bytes);
+						hashes += functions[i] + ": " + str + '\n';
+					}
+					
+					hashes += "\n\n" + "ISO-8859-1 Encoded: \n\n";
+					bytesUTF = txtArea.getText().getBytes("ISO-8859-1");
+					
+					for (int i = 0; i < functions.length; i++) {
+						MessageDigest digest = MessageDigest.getInstance(functions[i]);
+						byte[] bytes = digest.digest(bytesUTF);
+						String str = DatatypeConverter.printHexBinary(bytes);
+						hashes += functions[i] + ": " + str + '\n';
+					}
+
+					JOptionPane.showMessageDialog(mainWindowReference, hashes, GetStringForLang("Hashing"), JOptionPane.PLAIN_MESSAGE);
+				} catch (Exception ex) {
+					System.err.println(ex.getMessage());
+				}
+			}
+		});
+		
+		countAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+				JOptionPane.showMessageDialog(mainWindowReference, GetStringForLang("Word Count: \nLineCount: \nCharacter Count:\n"), GetStringForLang("Counts"), JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		
+		runAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+				JOptionPane.showMessageDialog(mainWindowReference, GetStringForLang("Command line:"), GetStringForLang("Run"), JOptionPane.INFORMATION_MESSAGE);
+				try {
+					Runtime rt = Runtime.getRuntime();
+					Process pr = rt.exec("calc.exe");
+				} catch (IOException ex) {
+					System.err.println(ex.getMessage());
+				}
+			}
+		});
+		
 		this.addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent comp) {
 				// the component was resized...
 				System.out.println("window resized: (" + mainWindowReference.getWidth() + "," + mainWindowReference.getHeight() + ")");
+				scrollPane.setPreferredSize(new Dimension(mainWindowReference.getWidth() - 40, mainWindowReference.getHeight() - 100));
+			}
+		});
+		this.addWindowStateListener(new WindowStateListener() {
+			public void windowStateChanged(WindowEvent ev) {
+				System.out.println("window state changed: " + ev);
 				scrollPane.setPreferredSize(new Dimension(mainWindowReference.getWidth() - 40, mainWindowReference.getHeight() - 100));
 			}
 		});
@@ -373,6 +453,11 @@ public class Editor extends JFrame {
 				}
 			}
 		});
+		
+		// Size the window correctly
+		this.setSize(400, 300);
+		scrollPane.setPreferredSize(new Dimension(mainWindowReference.getWidth() - 40, mainWindowReference.getHeight() - 100));
+		
 	}
 	
 	public static void main(String[] args) {
