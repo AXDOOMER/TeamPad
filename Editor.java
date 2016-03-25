@@ -29,6 +29,8 @@ public class Editor extends JFrame {
 	boolean statusBar = true;		// stats
 	Map<String, String> configs = new HashMap<String, String>();
 	String lastSelectedDirectory = "";
+	Stack<String> undoList = new Stack<String>();
+	Stack<String> redoList = new Stack<String>();
 	
 	public static String GetStringForLang(String textId) {
 		
@@ -151,6 +153,7 @@ public class Editor extends JFrame {
 		txtArea.setFont(new Font(defaultFont, Font.PLAIN, textSize));
 		// textArea.setLineWrap( true );
 		// textArea.setWrapStyleWord( true );
+		undoList.push(txtArea.getText());
 
 		// Add to the frame, put the textarea in a scrollpane first so we get the scrollbars
 		JScrollPane scrollPane = new JScrollPane(txtArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED/*, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS*/);
@@ -209,6 +212,9 @@ public class Editor extends JFrame {
 						lastSelectedDirectory = fileChooser.getCurrentDirectory().toString();
 						BufferedReader reader = new BufferedReader(new FileReader(fileChooser.getSelectedFile().getAbsolutePath()));
 						
+						undoList = new Stack<String>();
+						redoList = new Stack<String>();
+						
 						txtArea.setText("");
 						txtArea.read(reader, null);
 						reader.close();
@@ -242,6 +248,24 @@ public class Editor extends JFrame {
 		editMenu.add(selectAllAction);
 		editMenu.add(selectLineAction);
 		editMenu.add(findAction);
+		
+		undoAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+				if (!undoList.empty()) {
+					redoList.push(txtArea.getText());
+					txtArea.setText(undoList.pop());
+				}
+			}
+		});
+		
+		redoAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+				if (!redoList.empty()) {
+					undoList.push(txtArea.getText());
+					txtArea.setText(redoList.pop());
+				}
+			}
+		});
 		
 		// Option menu
 		JMenu optionMenu = new JMenu("Option");
@@ -470,6 +494,22 @@ public class Editor extends JFrame {
 			}
 		});
 		
+		txtArea.addKeyListener(new KeyListener() { 
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+					//e.consume();
+					undoList.push(txtArea.getText());
+					redoList = new Stack<String>();
+				}
+			}
+			public void keyReleased(KeyEvent e) {
+				// Do nothing, Java wants it to be overriden, but we don't want to change its default behavior. 
+			}
+			public void keyTyped(KeyEvent e) {
+				// Do nothing, Java wants it to be overriden, but we don't want to change its default behavior. 
+			}
+		});
+
 		txtArea.addCaretListener(new CaretListener() {
 			public void caretUpdate(CaretEvent e) {
 				try {
