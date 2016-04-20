@@ -52,7 +52,7 @@ public class Editor extends JFrame {
 				case "About": translation = "About"; break;
 				case "Copying": translation = "Written by: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015-2016\n\nDistributed under the GNU GPL version 3"; break;
 				
-				case "Lenght": translation = "Lenght"; break;
+				case "Size": translation = "Lenght"; break;
 				case "Line": translation = "Line"; break;
 				case "Notice": translation = "Notice"; break;
 				case "RestartTranslate": translation = "The interface will be completly translated only once you will restart the program."; break;
@@ -66,7 +66,7 @@ public class Editor extends JFrame {
 				case "About": translation = "À propos"; break;
 				case "Copying": translation = "Écrit par: \nAlexandre-Xavier Labonté-Lamoureux\nDroits d'auteur(c) 2015-2016\n\nDistribué sous la GNU GPL version 3"; break;
 				
-				case "Lenght": translation = "Longueur"; break;
+				case "Size": translation = "Taille"; break;
 				case "Line": translation = "Ligne"; break;
 				case "Notice": translation = "Avertissement"; break;
 				case "RestartTranslate": translation = "L'interface sera complètement traduite que lorsque vous aurez redémarré le logicel."; break;
@@ -80,7 +80,7 @@ public class Editor extends JFrame {
 				case "About": translation = "Über"; break;
 				case "Copying": translation = "Geschrieben von: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015-2016\n\nUnter der GNU GPL version 3"; break;
 			
-				case "Lenght": translation = "Länge"; break;
+				case "Size": translation = "Größe"; break;
 				case "Notice": translation = "Beachten"; break;
 			}
 			
@@ -92,7 +92,7 @@ public class Editor extends JFrame {
 				case "About": translation = "около"; break;
 				case "Copying": translation = "написано: \nAlexandre-Xavier Labonté-Lamoureux\nАвторские права 2015-2016\n\nРаспространяется под GNU GPL версии 3"; break;
 			
-				case "Lenght": translation = "длина"; break;
+				case "Size": translation = "размер"; break;
 				case "Notice": translation = "уведомление"; break;
 			}
 		} else {
@@ -554,13 +554,13 @@ public class Editor extends JFrame {
 		*/
 		txtArea.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				lengthLabel.setText(GetStringForLang("Lenght") + " " + (txtArea.getText()).length());
+				lengthLabel.setText(GetStringForLang("Size") + " " + (txtArea.getText()).length());
 			}
 			public void insertUpdate(DocumentEvent e) {
-				lengthLabel.setText(GetStringForLang("Lenght") + " " + (txtArea.getText()).length());
+				lengthLabel.setText(GetStringForLang("Size") + " " + (txtArea.getText()).length());
 			}
 			public void removeUpdate(DocumentEvent e) {
-				lengthLabel.setText(GetStringForLang("Lenght") + " " + (txtArea.getText()).length());
+				lengthLabel.setText(GetStringForLang("Size") + " " + (txtArea.getText()).length());
 			}
 		});
 		
@@ -583,7 +583,7 @@ public class Editor extends JFrame {
 		txtArea.addCaretListener(new CaretListener() {
 			public void caretUpdate(CaretEvent e) {
 				try {
-					lineLabel.setText(GetStringForLang("Line") + " " + txtArea.getLineOfOffset(txtArea.getCaretPosition()));
+					lineLabel.setText(GetStringForLang("Line") + " " + (txtArea.getLineOfOffset(txtArea.getCaretPosition()) + 1));
 				} catch (BadLocationException ex) {
 					System.err.println(ex.getMessage());
 				}
