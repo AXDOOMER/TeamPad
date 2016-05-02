@@ -597,6 +597,11 @@ public class Editor extends JFrame {
 	}
 	
 	public static void main(String[] args) {
+		
+		System.out.println("Java " + System.getProperty("java.version") + " " + System.getProperty("java.vendor"));
+		System.out.println(System.getProperty("os.name") + " (" + System.getProperty("os.version") + ") " + System.getProperty("os.arch") + " " + Runtime.getRuntime().availableProcessors() + "-cores");
+		System.out.println("TEAMPAD VERSION 0.1");
+		
 		try {
 			//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 			//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
