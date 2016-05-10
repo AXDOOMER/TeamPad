@@ -35,7 +35,7 @@ public class Editor extends JFrame {
 	String lastSelectedDirectory = "";
 	Stack<String> undoList = new Stack<String>();
 	Stack<String> redoList = new Stack<String>();
-	
+
 	public static String GetStringForLang(String textId) {
 		
 		String translation = "?";
@@ -56,6 +56,11 @@ public class Editor extends JFrame {
 				case "Line": translation = "Line"; break;
 				case "Notice": translation = "Notice"; break;
 				case "RestartTranslate": translation = "The interface will be completly translated only once you will restart the program."; break;
+			
+				case "AskIP": translation = "Connection to another pad"; break;
+				case "EnterIP": translation = "Enter the IP address of the computer you wish to connect to:"; break;
+				
+				case "SystemInfo": translation = "System Info"; break;
 			}
 			
 		} else if (language.equals("French")) {
@@ -70,6 +75,11 @@ public class Editor extends JFrame {
 				case "Line": translation = "Ligne"; break;
 				case "Notice": translation = "Avertissement"; break;
 				case "RestartTranslate": translation = "L'interface sera complètement traduite que lorsque vous aurez redémarré le logicel."; break;
+			
+				case "AskIP": translation = "Connexion à un autre Pad"; break;
+				case "EnterIP": translation = "Entrez l'adresse IP à laquelle vous voulez vous connecter:"; break;
+				
+				case "SystemInfo": translation = "Information sur le système"; break;
 			}
 			
 		} else if (language.equals("German")) {
@@ -82,6 +92,8 @@ public class Editor extends JFrame {
 			
 				case "Size": translation = "Größe"; break;
 				case "Notice": translation = "Beachten"; break;
+				
+				case "SystemInfo": translation = "Systeminformationen"; break;
 			}
 			
 		} else if (language.equals("Russian")) {
@@ -94,6 +106,8 @@ public class Editor extends JFrame {
 			
 				case "Size": translation = "размер"; break;
 				case "Notice": translation = "уведомление"; break;
+				
+				case "SystemInfo": translation = "системная информация"; break;
 			}
 		} else {
 			
@@ -452,6 +466,27 @@ public class Editor extends JFrame {
 		teamMenu.add(sendMessageAction);
 		teamMenu.add(disconnectAllAction);
 		
+		connectToAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+
+				String s = (String)JOptionPane.showInputDialog(
+					mainWindowReference,
+					GetStringForLang("EnterIP"),
+					GetStringForLang("AskIP"),
+					JOptionPane.PLAIN_MESSAGE,
+					GetImageIcon("network_icon.jpg"),
+					null,
+					"");
+
+				System.out.println("IP=" + s);
+				
+				// Try to connect
+				if ((s != null) && (s.length() > 0)) {
+					System.out.print("Connection to... " + s);
+				}
+			}
+		});
+		
 		// Help menu
 		JMenu helpMenu = new JMenu(GetStringForLang("Help"));
 		menuBar.add(helpMenu);
@@ -571,12 +606,23 @@ public class Editor extends JFrame {
 					undoList.push(txtArea.getText());
 					redoList = new Stack<String>();
 				}
+				
+				// System info
+				if(e.isControlDown() && e.getKeyCode() == KeyEvent.VK_D){
+					JOptionPane.showMessageDialog(mainWindowReference, 
+					"Java " + System.getProperty("java.version") + " " + System.getProperty("java.vendor") + "\n" +
+					System.getProperty("os.name") + " (" + System.getProperty("os.version") + ") " + 
+					System.getProperty("os.arch") + " " + Runtime.getRuntime().availableProcessors() + "-cores", 
+					GetStringForLang("SystemInfo"),
+					JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 			public void keyReleased(KeyEvent e) {
 				// Do nothing, Java wants it to be overriden, but we don't want to change its default behavior. 
 			}
 			public void keyTyped(KeyEvent e) {
 				// Do nothing, Java wants it to be overriden, but we don't want to change its default behavior. 
+				System.out.print(".");
 			}
 		});
 
