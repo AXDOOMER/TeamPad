@@ -35,6 +35,7 @@ public class Editor extends JFrame {
 	String lastSelectedDirectory = "";
 	Stack<String> undoList = new Stack<String>();
 	Stack<String> redoList = new Stack<String>();
+	String lastCommand = "calc.exe";
 
 	public static String GetStringForLang(String textId) {
 		
@@ -61,6 +62,8 @@ public class Editor extends JFrame {
 				case "EnterIP": translation = "Enter the IP address of the computer you wish to connect to:"; break;
 				
 				case "SystemInfo": translation = "System Info"; break;
+				case "CommandLine": translation = "Command line"; break;
+				case "EnterPath": translation = "Enter the path to a program to execute it:"; break;
 			}
 			
 		} else if (language.equals("French")) {
@@ -80,6 +83,8 @@ public class Editor extends JFrame {
 				case "EnterIP": translation = "Entrez l'adresse IP à laquelle vous voulez vous connecter:"; break;
 				
 				case "SystemInfo": translation = "Information sur le système"; break;
+				case "CommandLine": translation = "Ligne de commande"; break;
+				case "EnterPath": translation = "Entrez le chemin vers le logiciel à exécuter:"; break;
 			}
 			
 		} else if (language.equals("German")) {
@@ -94,6 +99,8 @@ public class Editor extends JFrame {
 				case "Notice": translation = "Beachten"; break;
 				
 				case "SystemInfo": translation = "Systeminformationen"; break;
+				case "CommandLine": translation = "Kommandozeilen"; break;
+				case "EnterPath": translation = "Software starten pfad"; break;
 			}
 			
 		} else if (language.equals("Russian")) {
@@ -108,6 +115,48 @@ public class Editor extends JFrame {
 				case "Notice": translation = "уведомление"; break;
 				
 				case "SystemInfo": translation = "системная информация"; break;
+				case "CommandLine": translation = "командной строки"; break;
+				case "EnterPath": translation = "Путь программного обеспечения для запуска"; break;
+			}
+		} else if (language.equals("Chinese")) {
+			
+			switch (textId)
+			{
+				case "Help": translation = "帮助"; break;
+				case "About": translation = "关于"; break;
+				case "Copying": translation = "书面 \nAlexandre-Xavier Labonté-Lamoureux\n版权 2015-2016\n\n在GNU GPL3版本下发布"; break;
+				
+				case "Size": translation = "大小"; break;
+				case "Line": translation = "线"; break;
+				case "Notice": translation = "警告"; break;
+				case "RestartTranslate": translation = "该界面将充分体现直至软件重新启动。"; break;
+			
+				case "AskIP": translation = "登录"; break;
+				case "EnterIP": translation = "输入IP地址连接"; break;
+				
+				case "SystemInfo": translation = "系统信息"; break;
+				case "CommandLine": translation = "命令行"; break;
+				case "EnterPath": translation = "输入到软件运行的路径"; break;
+			}
+		} else if (language.equals("Spanish")) {
+			
+			switch (textId)
+			{
+				case "Help": translation = "Ayudar"; break;
+				case "About": translation = "A proposito"; break;
+				case "Copying": translation = "Escrito por: \nAlexandre-Xavier Labonté-Lamoureux\nDerechos de autor(c) 2015-2016\n\nDistribuido bajo la GNU GPL versión 3"; break;
+				
+				case "Size": translation = "Tamaño"; break;
+				case "Line": translation = "Línea"; break;
+				case "Notice": translation = "Advertencia"; break;
+				case "RestartTranslate": translation = "Reinicie el software para traducir la interfaz completamente."; break;
+			
+				case "AskIP": translation = "Conexión a otro"; break;
+				case "EnterIP": translation = "Introduzca la dirección IP a la que desea conectarse:"; break;
+				
+				case "SystemInfo": translation = "Información del sistema"; break;
+				case "CommandLine": translation = "Línea de comandos"; break;
+				case "EnterPath": translation = "Introduzca la ruta de acceso al software para ejecutar:"; break;
 			}
 		} else {
 			
@@ -557,12 +606,26 @@ public class Editor extends JFrame {
 		
 		runAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
-				JOptionPane.showMessageDialog(mainWindowReference, GetStringForLang("Command line:"), GetStringForLang("Run"), JOptionPane.INFORMATION_MESSAGE);
-				try {
-					Runtime rt = Runtime.getRuntime();
-					Process pr = rt.exec("calc.exe");
-				} catch (IOException ex) {
-					System.err.println(ex.getMessage());
+				String s = (String)JOptionPane.showInputDialog(
+					mainWindowReference,
+					GetStringForLang("EnterPath"),
+					GetStringForLang("CommandLine"),
+					JOptionPane.INFORMATION_MESSAGE,
+					GetImageIcon("debug.png"),
+					null,
+					lastCommand);
+
+				System.out.println("PATH=" + s);
+				
+				// Start the application
+				if ((s != null) && (s.length() > 0)) {
+					try {
+						Runtime rt = Runtime.getRuntime();
+						Process pr = rt.exec(s);	// Execute
+						lastCommand = s;
+					} catch (IOException ex) {
+						System.err.println(ex.getMessage());
+					}
 				}
 			}
 		});
