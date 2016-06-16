@@ -28,6 +28,7 @@ public class Editor extends JFrame {
 	int tabSize = 4;	// Get the default tab size			int tabSize = textarea.getTabSize(); // 8
 	String defaultFont = "Courier New";
 	int textSize = 14;		// zoom
+	final float textSizeIncrement = 2.0f;		// zoom increment
 	boolean lineNumbering = false;		// lines
 	boolean lineWarp = false;		// wrap
 	boolean statusBar = true;		// stats
@@ -403,7 +404,23 @@ public class Editor extends JFrame {
 		menuBar.add(optionMenu);
 		// Create the items of the option menu
 		JMenuItem increaseAction = new JMenuItem("Increase text size", GetImageIcon("nav_zoomin.png"));
+		// Add an action to zoom in
+		increaseAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+				textSize += textSizeIncrement;
+				txtArea.setFont(new Font(txtArea.getFont().getName(), Font.PLAIN, textSize));
+			}
+		});
+		
 		JMenuItem decreaseAction = new JMenuItem("Decrease text size", GetImageIcon("nav_zoomout.png"));
+		// Add an action to zoom out
+		decreaseAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+				textSize -= textSizeIncrement;
+				txtArea.setFont(new Font(txtArea.getFont().getName(), Font.PLAIN, textSize));
+			}
+		});
+		
 		JCheckBoxMenuItem lineNumberingAction = new JCheckBoxMenuItem("Line numbering", GetImageIcon("Char - Number.png"));
 		JCheckBoxMenuItem wordWarpAction = new JCheckBoxMenuItem("Word warp", GetImageIcon("WordWrap.png"));
 		JCheckBoxMenuItem statusBarAction = new JCheckBoxMenuItem("Status bar", GetImageIcon("ui-status-bar.png"));
@@ -412,35 +429,34 @@ public class Editor extends JFrame {
 		/*JMenuItem languageAction = new JMenuItem("Language");*/
 		
 		// Fonts
-		JMenu fontsMenu = new JMenu("Font");
-		fontsMenu.setIcon(GetImageIcon("vdecoloricon.gif"));
-		ButtonGroup fontsGroup = new ButtonGroup();
-		String[] fonts = {"Andale Mono", "Arial", "Consolas", "Courier New", "DejaVu Sans Mono", 
-		"Droid Sans Mono", "Fixedsys", "Liberation Mono", "Lucida Console", "Monaco", "Source Code Pro", "System"};
+		JMenuItem fontsAction = new JMenuItem("Font", GetImageIcon("vdecoloricon.gif"));
 
-		String[] fontlist=(GraphicsEnvironment.getLocalGraphicsEnvironment()).getAvailableFontFamilyNames();
-		ArrayList availfonts = new ArrayList<String>(Arrays.asList(fontlist));
-
-		for (int i = 0; i < fonts.length; i++) {
-			if (availfonts.contains(fonts[i]))
-			{
-				// Add font to menu
-				JRadioButtonMenuItem newFont = new JRadioButtonMenuItem(fonts[i]);
-				fontsGroup.add(newFont);
-				fontsMenu.add(newFont);
-			
-				if (newFont.getText().equals(defaultFont)) {
-					newFont.setSelected(true);
+		fontsAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+				String[] fontlist = (GraphicsEnvironment.getLocalGraphicsEnvironment()).getAvailableFontFamilyNames();
+				JComboBox jcb = new JComboBox<String>(fontlist);
+				
+				jcb.setSelectedItem(txtArea.getFont().getName());
+				
+				System.out.println("\nCURRENT=" + txtArea.getFont().getName());
+				
+				String[] options = { "OK" };
+				
+				int n = (int)JOptionPane.showOptionDialog(
+					mainWindowReference, 
+					jcb, 
+					"Font selection", 
+					JOptionPane.DEFAULT_OPTION, 
+					JOptionPane.PLAIN_MESSAGE, 
+					null,
+					options, options[0]);
+					
+				if (n >= 0) {
+					txtArea.setFont(new Font(jcb.getSelectedItem().toString(), Font.PLAIN, textSize));
+					System.out.println("\nFONT=" + jcb.getSelectedItem());
 				}
-			
-				// Add an action on fonts items
-				newFont.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg) {
-						txtArea.setFont(new Font(((JRadioButtonMenuItem) arg.getSource()).getText(), Font.PLAIN, textSize));
-					}
-				});
 			}
-		}
+		});	
 
 		// Languages
 		JMenu languagesMenu = new JMenu("Language");
@@ -479,7 +495,7 @@ public class Editor extends JFrame {
 		optionMenu.addSeparator();		// Separator
 		optionMenu.add(colorsAction);
 		/*optionMenu.add(fontAction);*/
-		optionMenu.add(fontsMenu);
+		optionMenu.add(fontsAction);
 		/*optionMenu.add(languageAction);*/
 		optionMenu.add(languagesMenu);
 		
