@@ -552,6 +552,27 @@ public class Editor extends JFrame {
 			}
 		});
 		
+		sendMessageAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+
+				String s = (String)JOptionPane.showInputDialog(
+					mainWindowReference,
+					"This will broadcast a message to every connected peer.",
+					"Send a message",
+					JOptionPane.PLAIN_MESSAGE,
+					GetImageIcon("c02228162.jpg"),
+					null,
+					"");
+
+				System.out.println("message: " + s);
+				
+				// Try to connect
+				if ((s != null) && (s.length() > 0)) {
+					System.out.print("message is sent... " + s);
+				}
+			}
+		});
+		
 		// Help menu
 		JMenu helpMenu = new JMenu(GetStringForLang("Help"));
 		menuBar.add(helpMenu);
