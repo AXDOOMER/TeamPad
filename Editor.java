@@ -1,4 +1,4 @@
-// Copyright (c) Alexandre-Xavier Labonté-Lamoureux, 2015
+// Copyright (c) 2015-2016 Alexandre-Xavier Labonté-Lamoureux
 
 // javac -encoding UTF8 Editor.java
 // java Editor
@@ -19,6 +19,7 @@ import java.awt.Image;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.util.Base64.Decoder;
+import java.net.*;
 
 
 public class Editor extends JFrame {
@@ -37,6 +38,14 @@ public class Editor extends JFrame {
 	Stack<String> undoList = new Stack<String>();
 	Stack<String> redoList = new Stack<String>();
 	String lastCommand = "calc.exe";
+	int port = 8166;
+	
+	// Networking
+	ServerSocket server = null;
+    ArrayList<Socket> serverConnections = new ArrayList<Socket>();
+	Socket clientConnection = null;
+	public BufferedReader reader = null;
+	public PrintWriter writer = null;
 
 	public static String GetStringForLang(String textId) {
 		
@@ -545,9 +554,17 @@ public class Editor extends JFrame {
 
 				System.out.println("IP=" + s);
 				
-				// Try to connect
+				// Try to connect (this connects to a server)
 				if ((s != null) && (s.length() > 0)) {
-					System.out.print("Connection to... " + s);
+					System.out.println("Connection to... " + s);
+					
+					try {
+						clientConnection = new Socket(s, port);
+						//connections.add(new Socket(s, port));
+					} catch (Exception e) {
+						System.err.println(e.getMessage());
+						//connections.clear();
+					}
 				}
 			}
 		});
