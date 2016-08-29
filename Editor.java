@@ -38,7 +38,6 @@ public class Editor extends JFrame {
 	Stack<String> undoList = new Stack<String>();
 	Stack<String> redoList = new Stack<String>();
 	String lastCommand = "calc.exe";
-	int port = 8166;
 	
 	// Networking
 	ServerSocket server = null;
@@ -46,6 +45,7 @@ public class Editor extends JFrame {
 	Socket clientConnection = null;
 	public BufferedReader reader = null;
 	public PrintWriter writer = null;
+	int port = 8166;
 
 	public static String GetStringForLang(String textId) {
 		
@@ -269,6 +269,7 @@ public class Editor extends JFrame {
 		lineNumbering = Boolean.parseBoolean(configs.get("lines"));
 		lineWarp = Boolean.parseBoolean(configs.get("warp"));
 		statusBar = Boolean.parseBoolean(configs.get("stats"));
+		port = Integer.parseInt(configs.get("port"));
 		
 		// Layout
 		JPanel mainFrame = new JPanel();
@@ -559,8 +560,10 @@ public class Editor extends JFrame {
 					System.out.println("Connection to... " + s);
 					
 					try {
-						clientConnection = new Socket(s, port);
+						clientConnection = new Socket(s, port);		// Timeout?
 						//connections.add(new Socket(s, port));
+						reader = new BufferedReader(new InputStreamReader(clientConnection.getInputStream()));
+						writer = new PrintWriter(new OutputStreamWriter(clientConnection.getOutputStream()));
 					} catch (Exception e) {
 						System.err.println(e.getMessage());
 						//connections.clear();
