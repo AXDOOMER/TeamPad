@@ -5,4 +5,5 @@ zoom	14
 lines	true
 warp	true
 stats	true
-
+port	8000
+lastip	127.0.0.1

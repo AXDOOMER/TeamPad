@@ -262,14 +262,46 @@ public class Editor extends JFrame {
 		}
 
 		// Apply the settings loaded from the configuration file
-		tabSize = Integer.parseInt(configs.get("tab"));
-		defaultFont = configs.get("font");
-		language = configs.get("lang");
-		textSize = Integer.parseInt(configs.get("zoom"));
-		lineNumbering = Boolean.parseBoolean(configs.get("lines"));
-		lineWarp = Boolean.parseBoolean(configs.get("warp"));
-		statusBar = Boolean.parseBoolean(configs.get("stats"));
-		port = Integer.parseInt(configs.get("port"));
+		try {
+			tabSize = Integer.parseInt(configs.get("tab"));
+		} catch (Exception e) {
+			System.err.println("'tab' is missing from the configuration file or has an invalid value.");
+		}
+		try {
+			defaultFont = configs.get("font");
+		} catch (Exception e) {
+			System.err.println("'font' is missing from the configuration file or has an invalid value.");
+		}
+		try {
+			language = configs.get("lang");
+		} catch (Exception e) {
+			System.err.println("'lang' is missing from the configuration file or has an invalid value.");
+		}
+		try {
+			textSize = Integer.parseInt(configs.get("zoom"));
+		} catch (Exception e) {
+			System.err.println("'zoom' is missing from the configuration file or has an invalid value.");
+		}
+		try {
+			lineNumbering = Boolean.parseBoolean(configs.get("lines"));
+		} catch (Exception e) {
+			System.err.println("'lines' is missing from the configuration file or has an invalid value.");
+		}
+		try {
+			lineWarp = Boolean.parseBoolean(configs.get("warp"));
+		} catch (Exception e) {
+			System.err.println("'warp' is missing from the configuration file or has an invalid value.");
+		}
+		try {
+			statusBar = Boolean.parseBoolean(configs.get("stats"));
+		} catch (Exception e) {
+			System.err.println("'stats' is missing from the configuration file or has an invalid value.");
+		}
+		try {
+			port = Integer.parseInt(configs.get("port"));
+		} catch (Exception e) {
+			System.err.println("'port' is missing from the configuration file or has an invalid value.");
+		}
 		
 		// Layout
 		JPanel mainFrame = new JPanel();
