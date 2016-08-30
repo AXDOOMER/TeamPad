@@ -589,7 +589,10 @@ public class Editor extends JFrame {
 					} catch (Exception e) {
 						System.err.println(e.getMessage());
 						try {
-							server.close();
+							if (server != null) {
+								server.close();
+								server = null;
+							}
 						} catch (IOException ioe) {
 							System.err.println("Unable to close the server socket.");
 						}
@@ -635,14 +638,32 @@ public class Editor extends JFrame {
 			public void actionPerformed(ActionEvent arg) {
 				// Close any connection or stream
 				try {
-					reader.close();
-					writer.close();
-					clientConnection.close();
+					if (reader != null) {
+						reader.close();
+						reader = null;
+					}
+					if (writer != null) {
+						writer.close();
+						writer = null;
+					}
 					
-					for (Socket sock : serverConnections)
-						sock.close();
+					if (clientConnection != null) {
+						clientConnection.close();
+						clientConnection = null;
+					}
 					
-					server.close();
+					for (Socket sock : serverConnections) {
+						if (sock != null) {
+							sock.close();
+							sock = null;
+						}
+					}
+					serverConnections.clear();
+					
+					if (server != null) {
+						server.close();
+						server = null;
+					}
 				} catch (Exception e) {
 					System.err.println("There was an error while closing sockets and streams. Some sockets may be left open...");
 				}
