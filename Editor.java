@@ -572,7 +572,34 @@ public class Editor extends JFrame {
 		teamMenu.addSeparator();
 		teamMenu.add(sendMessageAction);
 		teamMenu.add(disconnectAllAction);
-		
+
+		allowConnectionsAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+				AbstractButton aButton = (AbstractButton)arg.getSource();
+				boolean enabled = aButton.getModel().isSelected();
+				System.out.println("Allow connections: " + enabled);
+				
+				if (enabled) {
+					try {
+						server = new ServerSocket(port);
+						server.setSoTimeout(5 * 1000);		// Wait 5 secs
+						System.out.println("Waiting for someone to connect...");
+						Socket client = server.accept();
+						serverConnections.add(client);
+					} catch (Exception e) {
+						System.err.println(e.getMessage());
+						try {
+							server.close();
+						} catch (IOException ioe) {
+							System.err.println("Unable to close the server socket.");
+						}
+					}
+				} else {
+					// Don't allow connections
+				}	
+			}
+		});
+
 		connectToAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 
@@ -600,6 +627,24 @@ public class Editor extends JFrame {
 						System.err.println(e.getMessage());
 						//connections.clear();
 					}
+				}
+			}
+		});
+		
+		disconnectAllAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+				// Close any connection or stream
+				try {
+					reader.close();
+					writer.close();
+					clientConnection.close();
+					
+					for (Socket sock : serverConnections)
+						sock.close();
+					
+					server.close();
+				} catch (Exception e) {
+					System.err.println("There was an error while closing sockets and streams. Some sockets may be left open...");
 				}
 			}
 		});
