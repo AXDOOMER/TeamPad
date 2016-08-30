@@ -585,6 +585,8 @@ public class Editor extends JFrame {
 						server.setSoTimeout(5 * 1000);		// Wait 5 secs
 						System.out.println("Waiting for someone to connect...");
 						Socket client = server.accept();
+						reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+						writer = new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
 						serverConnections.add(client);
 					} catch (Exception e) {
 						System.err.println(e.getMessage());
