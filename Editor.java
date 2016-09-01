@@ -41,7 +41,7 @@ public class Editor extends JFrame {
 	String lastIP = "127.0.0.1";
 	
 	// Networking
-	int port = 8200;
+	int port = 8166;
 	Socket sock = null;
 	BufferedReader reader = null;
 	PrintWriter writer = null;
@@ -307,6 +307,11 @@ public class Editor extends JFrame {
 			lastIP = configs.get("lastip");
 		} catch (Exception e) {
 			System.err.println("'lastip' is missing from the configuration file or has an invalid value.");
+		}
+		try {
+			lastCommand = configs.get("lastcmd");
+		} catch (Exception e) {
+			System.err.println("'lastcmd' is missing from the configuration file or has an invalid value.");
 		}
 		
 		// Layout
