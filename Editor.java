@@ -38,14 +38,103 @@ public class Editor extends JFrame {
 	Stack<String> undoList = new Stack<String>();
 	Stack<String> redoList = new Stack<String>();
 	String lastCommand = "calc.exe";
+	int port = 8166;
 	
 	// Networking
-	ServerSocket server = null;
-    ArrayList<Socket> serverConnections = new ArrayList<Socket>();
-	Socket clientConnection = null;
-	public BufferedReader reader = null;
-	public PrintWriter writer = null;
-	int port = 8166;
+	public class Connection implements Runnable {
+		public BufferedReader reader = null;
+		public PrintWriter writer = null;
+		public Socket client = null;
+		
+		public Connection(Socket sock) {
+			try {
+				client = sock;
+				//clientConnection = new Socket(s, port);		// Timeout?
+				//connections.add(new Socket(s, port));
+				reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+				writer = new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
+			} catch (Exception e) {
+				System.err.println(e.getMessage());
+				//connections.clear();
+			}
+		}
+		
+		public void close() {
+			// Close any connection or stream
+			try {
+				if (reader != null) {
+					reader.close();
+					reader = null;
+				}
+				if (writer != null) {
+					writer.close();
+					writer = null;
+				}
+				if (client != null) {
+					client.close();
+					client = null;
+				}
+			} catch (Exception e) {
+				System.err.println("There was an error while closing sockets and streams. Some sockets may be left open...");
+			}
+		}
+		
+		public void run() {
+			String inputLine = null;
+			try {
+				while (true) {
+					if ((inputLine = reader.readLine()) != null) {
+							System.out.println(inputLine);
+					}
+				}
+			} catch (IOException ioe) {
+				System.err.println(ioe.getMessage());
+			}
+		}
+	}
+	
+	ArrayList<Connection> serverConnections = new ArrayList<Connection>();
+	
+	public class Server implements Runnable {
+		ServerSocket server = null;
+		Socket clientConnection = null;
+		int port;
+		
+		public Server(int port) {
+			this.port = port;
+		}
+		
+		public void dropConnections() {
+			for (Connection conn : serverConnections) {
+				if (conn != null) {
+					conn.close();
+				}
+			}
+			serverConnections.clear();
+		}
+		
+		public void run() {
+			try {
+				server = new ServerSocket(port);
+				server.setSoTimeout(5 * 1000);		// Wait 5 secs
+				System.out.println("Waiting for someone to connect...");
+				Socket client = server.accept();
+				Connection conn = new Connection(client);
+				Thread connectionThread = new Thread(conn);
+				serverConnections.add(conn);
+			} catch (Exception e) {
+				System.err.println(e.getMessage());
+				try {
+					if (server != null) {
+						server.close();
+						server = null;
+					}
+				} catch (IOException ioe) {
+					System.err.println("Unable to close the server socket.");
+				}
+			}
+		}
+	}
 
 	public static String GetStringForLang(String textId) {
 		
@@ -580,27 +669,12 @@ public class Editor extends JFrame {
 				System.out.println("Allow connections: " + enabled);
 				
 				if (enabled) {
-					try {
-						server = new ServerSocket(port);
-						server.setSoTimeout(5 * 1000);		// Wait 5 secs
-						System.out.println("Waiting for someone to connect...");
-						Socket client = server.accept();
-						reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
-						writer = new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
-						serverConnections.add(client);
-					} catch (Exception e) {
-						System.err.println(e.getMessage());
-						try {
-							if (server != null) {
-								server.close();
-								server = null;
-							}
-						} catch (IOException ioe) {
-							System.err.println("Unable to close the server socket.");
-						}
-					}
+					Server server = new Server(port);
+					Thread serverThread = new Thread(server);
+					serverThread.start();
 				} else {
 					// Don't allow connections
+					System.out.println("else: // Don't allow connections");
 				}	
 			}
 		});
@@ -624,10 +698,10 @@ public class Editor extends JFrame {
 					System.out.println("Connection to... " + s);
 					
 					try {
-						clientConnection = new Socket(s, port);		// Timeout?
-						//connections.add(new Socket(s, port));
-						reader = new BufferedReader(new InputStreamReader(clientConnection.getInputStream()));
-						writer = new PrintWriter(new OutputStreamWriter(clientConnection.getOutputStream()));
+						Socket sock = new Socket(s, port);		// Timeout?
+						Connection conn = new Connection(sock);
+						Thread connectionThread = new Thread(conn);
+						connectionThread.start();
 					} catch (Exception e) {
 						System.err.println(e.getMessage());
 						//connections.clear();
@@ -638,37 +712,7 @@ public class Editor extends JFrame {
 		
 		disconnectAllAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
-				// Close any connection or stream
-				try {
-					if (reader != null) {
-						reader.close();
-						reader = null;
-					}
-					if (writer != null) {
-						writer.close();
-						writer = null;
-					}
-					
-					if (clientConnection != null) {
-						clientConnection.close();
-						clientConnection = null;
-					}
-					
-					for (Socket sock : serverConnections) {
-						if (sock != null) {
-							sock.close();
-							sock = null;
-						}
-					}
-					serverConnections.clear();
-					
-					if (server != null) {
-						server.close();
-						server = null;
-					}
-				} catch (Exception e) {
-					System.err.println("There was an error while closing sockets and streams. Some sockets may be left open...");
-				}
+					// Disconnect everybody that's connected to me and disconnect who I am connected to. 
 			}
 		});
 		
