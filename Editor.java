@@ -38,9 +38,10 @@ public class Editor extends JFrame {
 	Stack<String> undoList = new Stack<String>();
 	Stack<String> redoList = new Stack<String>();
 	String lastCommand = "calc.exe";
+	String lastIP = "127.0.0.1";
 	
 	// Networking
-	int port = 50000;
+	int port = 8199;
 	Socket sock = null;
 	BufferedReader reader = null;
 	PrintWriter writer = null;
@@ -217,6 +218,8 @@ public class Editor extends JFrame {
 			case "saveas_icon.gif": b64string = "R0lGODlhEAAQAMZAAP8A/wAAAB8ubh8yiSMzeylBiC8wMjAwYDA4oDBAoDBIsDBOlDZcoUBAoEBIsEBQwEZGRlBQsGBYsGlaNnB44IdLSouGgI6GiJCI8JCQ/5OiqplqaZ5yPqB3P6CY/6Cg/6OdjrCGjLCo/7y31MC4/8DA/8RyccrE4NGpU9WIhdXV1dfX19zc3ODo8OXl5eXo7efq7ujr7+rs7+zu8O3v8e3v8+/x8fDw8PD4//FtbfT09Pbx4//FxP/LUP/hcf/9nP///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH5BAEKAH8ALAAAAAAQABAAAAejgH+Cg4SFggyIiYqJEIclHkCRkkA4DxKNfwwkGJOROEAPB5gMJRSdODctOTkpggulCrGyChYhPCaOJSUkuyQkFyAaGxWOAsbHFz8+IAajJAMuLCw3Fso9HA+YCyQELCosyT49HQsRoyIEKyzV4hwFBQ6jHwUsJyjtLu8Nox4F1DsoOEAjUCDBqAwFdASYcGKFCx0ECCDANAKCxYsQmmE0xJFQIAA7"; break;
 			case "file_edit.gif": b64string = "R0lGODlhFgAWAOd8AAA8X7P4r3HaT5wlAABbw5u5zc3StQA6qZ6lsCakEWGk1bjL59+mQv/ObBRGoP37+YLV/4bM9x9Xj5p0Z22TsOr01TmN14I2H4KUq//xtmeErZ5rKZjmsdHc7NL/0KCnhVpfeWuDpOJOPqXo/1a5b459bC1608z99KyzuXGnyzx+sqfH6//bm/jDY+v//9zZ2p/4/+Xk44eYq114o215iq/X9M4+IWM0K1CJxvf3937E8/Tx77aUhRqAQEKpTZXd/wB78eHHvf+uN6FaN6zE5pTR8bX09ypswLLu/3LIltTV1tv7/mO77V5wisGCIHC98f/phrLC0LauqJ3n2s/t+rHV3fbf2727uR1xmkvAKtLPz/b38lRni27VdLa7ytv/9sDe9Y8aAJKsuv/ASdiShKvr6jVmqO3u7xZ0zpvX9KGVk2SXwbz6//r8/VPFM875+8GBZf/mrABZvuHf3mqg1WqLu2Cv6Jfq/7y4t1e4/8fEwqh5RP///7X2//b0wMLw/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH5BAEKAIAALAAAAAAWABYAAAj+APkI5POgoMGCOXII3GLFyoOBAl/giaHlSgw9el5I0cJnCxwbIsicGdiBBg0vNEKgaCJDBhcEMQpcADmAh8IOdCysEYPDAgYTKuqYCFFHh5chA8JM2NFmwZM/URBQKYCCipgqYGSkoOJCB4gbUto01dFmjhI+czq06fDmT5U4cVbkAaIiBp82RCxQ4eOCSlskSH4UqdCghQEKErwIbLMCDRg+NYqkmTy5CosxLKA4sTmQCIEafKhQWUJ6yQk/Y1pkYLDHbmcCafi6WPKmzwgtY4TEabHBSxuInou0SVOkOAQIBoQ00KzGBUQ+wV2MGAG47YogUBiU6PAcOoEILt6ouPhywkMAFWY+0Kgz8rnnJ0s4CBDgJkuWHgCwmKjjGjiBJ190kYAPJJCQBAcpWHCEBnN0994bU0xRhhFGADbCE0fM0OBzCxDAxBsW/hBBBDro8IMCGrzQ3QJy2MEGiSNG8MOMMDChwVkcHmBHHzNOdwcETyiwxgwI7NBdBw6YwCOQKGqAAQJeKGFkd03VsQYFIciAghYxnLHDQ91BdMYLL5yxxRZhdhcQADs="; break;
 			//case "": b64string = ""; break;
+			
+			default: System.err.println("Base64 data for image '" + textId + "' not found.");
 		}
 		
 		try
@@ -225,8 +228,8 @@ public class Editor extends JFrame {
 			BufferedImage source = ImageIO.read(new ByteArrayInputStream(decodedBytes));
 			Image image = source.getScaledInstance(16, 16, Image.SCALE_SMOOTH);
 			return new ImageIcon(image);
-		} catch (IOException ioe) {
-			System.err.println(ioe.getMessage());
+		} catch (Exception e) {
+			System.err.println("Base64 decoding failed and/or image couldn't be created: " + e.getMessage());
 			return null;
 		}
 		
@@ -299,6 +302,11 @@ public class Editor extends JFrame {
 			port = Integer.parseInt(configs.get("port"));
 		} catch (Exception e) {
 			System.err.println("'port' is missing from the configuration file or has an invalid value.");
+		}
+		try {
+			lastIP = configs.get("lastip");
+		} catch (Exception e) {
+			System.err.println("'lastip' is missing from the configuration file or has an invalid value.");
 		}
 		
 		// Layout
@@ -602,7 +610,7 @@ public class Editor extends JFrame {
 							JOptionPane.PLAIN_MESSAGE,
 							GetImageIcon("network_icon.jpg"),
 							null,
-							"");
+							lastIP);
 
 						System.out.println("IP=" + ip);
 						
@@ -613,8 +621,9 @@ public class Editor extends JFrame {
 							try {
 								sock = new Socket(ip, port);	// Timeout?
 								reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-								// Writer: autoFlush must be true, else it won't send anything. 
-								writer = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()), true);
+								writer = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()), true);	// autoFlush must be true, else it won't send anything. 
+								// Connection successful!
+								lastIP = ip;
 							} catch (Exception e) {
 								System.err.println(e.getMessage());
 								//connections.clear();
@@ -653,30 +662,33 @@ public class Editor extends JFrame {
 		
 		sendMessageAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
+				if (sock != null) {
+					String m = (String)JOptionPane.showInputDialog(
+						mainWindowReference,
+						"This will broadcast a message to every connected peer.",
+						"Send a message",
+						JOptionPane.PLAIN_MESSAGE,
+						GetImageIcon("c02228162.jpg"),
+						null,
+						"");
 
-				String m = (String)JOptionPane.showInputDialog(
-					mainWindowReference,
-					"This will broadcast a message to every connected peer.",
-					"Send a message",
-					JOptionPane.PLAIN_MESSAGE,
-					GetImageIcon("c02228162.jpg"),
-					null,
-					"");
-
-				System.out.println("message: " + m);
-				
-				// Send the message if it's valid
-				if ((m != null) && (m.length() > 0)) {
-					try {
-						if (writer != null && sock != null) {
-							writer.println(m);
-							System.out.println("message is sent... " + m);
-						} else {
-							System.err.println("Not connected to anyone.");
+					System.out.println("message: " + m);
+					
+					// Send the message if it's valid
+					if ((m != null) && (m.length() > 0)) {
+						try {
+							if (writer != null && sock != null) {
+								writer.println(m);
+								System.out.println("message is sent... " + m);
+							} else {
+								System.err.println("Not connected to anyone.");
+							}
+						} catch (Exception e) {
+							System.err.println("message couldn't be sent.");
 						}
-					} catch (Exception e) {
-						System.err.println("message couldn't be sent.");
 					}
+				} else {
+					JOptionPane.showMessageDialog(mainWindowReference, "You are not connected to anyone.", "Can't send a messages", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -751,7 +763,7 @@ public class Editor extends JFrame {
 		
 		runAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
-				String s = (String)JOptionPane.showInputDialog(
+				String p = (String)JOptionPane.showInputDialog(
 					mainWindowReference,
 					GetStringForLang("EnterPath"),
 					GetStringForLang("CommandLine"),
@@ -760,14 +772,14 @@ public class Editor extends JFrame {
 					null,
 					lastCommand);
 
-				System.out.println("PATH=" + s);
+				System.out.println("PATH=" + p);
 				
 				// Start the application
-				if ((s != null) && (s.length() > 0)) {
+				if ((p != null) && (p.length() > 0)) {
 					try {
 						Runtime rt = Runtime.getRuntime();
-						Process pr = rt.exec(s);	// Execute
-						lastCommand = s;
+						Process pr = rt.exec(p);	// Execute
+						lastCommand = p;
 					} catch (IOException ex) {
 						System.err.println(ex.getMessage());
 					}
@@ -816,7 +828,7 @@ public class Editor extends JFrame {
 				}
 				
 				// System info
-				if(e.isControlDown() && e.getKeyCode() == KeyEvent.VK_D){
+				if(e.isControlDown() && e.getKeyCode() == KeyEvent.VK_F12){
 					JOptionPane.showMessageDialog(mainWindowReference, 
 					"Java " + System.getProperty("java.version") + " " + System.getProperty("java.vendor") + "\n" +
 					System.getProperty("os.name") + " (" + System.getProperty("os.version") + ") " + 
