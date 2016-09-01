@@ -582,8 +582,7 @@ public class Editor extends JFrame {
 		allowConnectionsAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				if (sock == null) {
-					AbstractButton aButton = (AbstractButton)arg.getSource();
-					boolean enabled = aButton.getModel().isSelected();
+					boolean enabled = allowConnectionsAction.isSelected();
 					System.out.println("Allow connections: " + enabled);
 					
 					if (enabled) {
@@ -633,29 +632,33 @@ public class Editor extends JFrame {
 						JOptionPane.showMessageDialog(mainWindowReference, "You can only have one connection at once.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				} else {
-					JOptionPane.showMessageDialog(mainWindowReference, "Cannot connect. The integrated server must be disabled. ", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(mainWindowReference, "The integrated server must be disabled. ", "Cannot connect", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 		
 		disconnectAllAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
-				// Close any socket or stream
-				try {
-					if (reader != null) {
-						reader.close();
-						reader = null;
+				if (reader == null && writer == null && sock == null) {
+					JOptionPane.showMessageDialog(mainWindowReference, "There are no connection to disconnect from.", "Already disconnected", JOptionPane.WARNING_MESSAGE);
+				} else {
+					// Close any socket or stream
+					try {
+						if (reader != null) {
+							reader.close();
+							reader = null;
+						}
+						if (writer != null) {
+							writer.close();
+							writer = null;
+						}
+						if (sock != null) {
+							sock.close();
+							sock = null;
+						}
+					} catch (Exception e) {
+						System.err.println("There was an error while closing sockets and streams.");
 					}
-					if (writer != null) {
-						writer.close();
-						writer = null;
-					}
-					if (sock != null) {
-						sock.close();
-						sock = null;
-					}
-				} catch (Exception e) {
-					System.err.println("There was an error while closing sockets and streams.");
 				}
 			}
 		});
