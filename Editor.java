@@ -38,103 +38,12 @@ public class Editor extends JFrame {
 	Stack<String> undoList = new Stack<String>();
 	Stack<String> redoList = new Stack<String>();
 	String lastCommand = "calc.exe";
-	int port = 8166;
 	
 	// Networking
-	public class Connection implements Runnable {
-		public BufferedReader reader = null;
-		public PrintWriter writer = null;
-		public Socket client = null;
-		
-		public Connection(Socket sock) {
-			try {
-				client = sock;
-				//clientConnection = new Socket(s, port);		// Timeout?
-				//connections.add(new Socket(s, port));
-				reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
-				writer = new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
-			} catch (Exception e) {
-				System.err.println(e.getMessage());
-				//connections.clear();
-			}
-		}
-		
-		public void close() {
-			// Close any connection or stream
-			try {
-				if (reader != null) {
-					reader.close();
-					reader = null;
-				}
-				if (writer != null) {
-					writer.close();
-					writer = null;
-				}
-				if (client != null) {
-					client.close();
-					client = null;
-				}
-			} catch (Exception e) {
-				System.err.println("There was an error while closing sockets and streams. Some sockets may be left open...");
-			}
-		}
-		
-		public void run() {
-			String inputLine = null;
-			try {
-				while (true) {
-					if ((inputLine = reader.readLine()) != null) {
-							System.out.println(inputLine);
-					}
-				}
-			} catch (IOException ioe) {
-				System.err.println(ioe.getMessage());
-			}
-		}
-	}
-	
-	ArrayList<Connection> serverConnections = new ArrayList<Connection>();
-	
-	public class Server implements Runnable {
-		ServerSocket server = null;
-		Socket clientConnection = null;
-		int port;
-		
-		public Server(int port) {
-			this.port = port;
-		}
-		
-		public void dropConnections() {
-			for (Connection conn : serverConnections) {
-				if (conn != null) {
-					conn.close();
-				}
-			}
-			serverConnections.clear();
-		}
-		
-		public void run() {
-			try {
-				server = new ServerSocket(port);
-				server.setSoTimeout(5 * 1000);		// Wait 5 secs
-				System.out.println("Waiting for someone to connect...");
-				Socket client = server.accept();
-				Connection conn = new Connection(client);
-				Thread connectionThread = new Thread(conn);
-				serverConnections.add(conn);
-			} catch (Exception e) {
-				System.err.println(e.getMessage());
-				try {
-					if (server != null) {
-						server.close();
-						server = null;
-					}
-				} catch (IOException ioe) {
-					System.err.println("Unable to close the server socket.");
-				}
-			}
-		}
-	}
+	int port = 50000;
+	Socket sock = null;
+	BufferedReader reader = null;
+	PrintWriter writer = null;
 
 	public static String GetStringForLang(String textId) {
 		
@@ -664,62 +573,88 @@ public class Editor extends JFrame {
 
 		allowConnectionsAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
-				AbstractButton aButton = (AbstractButton)arg.getSource();
-				boolean enabled = aButton.getModel().isSelected();
-				System.out.println("Allow connections: " + enabled);
-				
-				if (enabled) {
-					Server server = new Server(port);
-					Thread serverThread = new Thread(server);
-					serverThread.start();
+				if (sock == null) {
+					AbstractButton aButton = (AbstractButton)arg.getSource();
+					boolean enabled = aButton.getModel().isSelected();
+					System.out.println("Allow connections: " + enabled);
+					
+					if (enabled) {
+						System.out.println("Integrated server: Feature not implemented.");
+					} else {
+						// Don't allow connections
+						System.out.println("Don't allow connections");
+					}
 				} else {
-					// Don't allow connections
-					System.out.println("else: // Don't allow connections");
-				}	
+					JOptionPane.showMessageDialog(mainWindowReference, "You must disconnect from any client first. ", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 
 		connectToAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 
-				String s = (String)JOptionPane.showInputDialog(
-					mainWindowReference,
-					GetStringForLang("EnterIP"),
-					GetStringForLang("AskIP"),
-					JOptionPane.PLAIN_MESSAGE,
-					GetImageIcon("network_icon.jpg"),
-					null,
-					"");
+				if (!allowConnectionsAction.isSelected()) {
+					if (sock == null) {
+						String ip = (String)JOptionPane.showInputDialog(
+							mainWindowReference,
+							GetStringForLang("EnterIP"),
+							GetStringForLang("AskIP"),
+							JOptionPane.PLAIN_MESSAGE,
+							GetImageIcon("network_icon.jpg"),
+							null,
+							"");
 
-				System.out.println("IP=" + s);
-				
-				// Try to connect (this connects to a server)
-				if ((s != null) && (s.length() > 0)) {
-					System.out.println("Connection to... " + s);
-					
-					try {
-						Socket sock = new Socket(s, port);		// Timeout?
-						Connection conn = new Connection(sock);
-						Thread connectionThread = new Thread(conn);
-						connectionThread.start();
-					} catch (Exception e) {
-						System.err.println(e.getMessage());
-						//connections.clear();
+						System.out.println("IP=" + ip);
+						
+						// Try to connect (this connects to a server)
+						if ((ip != null) && (ip.length() > 0)) {
+							System.out.println("Connection to... " + ip);
+							
+							try {
+								sock = new Socket(ip, port);	// Timeout?
+								reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+								// Writer: autoFlush must be true, else it won't send anything. 
+								writer = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()), true);
+							} catch (Exception e) {
+								System.err.println(e.getMessage());
+								//connections.clear();
+							}
+						}
+					} else {
+						JOptionPane.showMessageDialog(mainWindowReference, "You can only have one connection at once.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
+				} else {
+					JOptionPane.showMessageDialog(mainWindowReference, "Cannot connect. The integrated server must be disabled. ", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 		
 		disconnectAllAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
-					// Disconnect everybody that's connected to me and disconnect who I am connected to. 
+				// Close any socket or stream
+				try {
+					if (reader != null) {
+						reader.close();
+						reader = null;
+					}
+					if (writer != null) {
+						writer.close();
+						writer = null;
+					}
+					if (sock != null) {
+						sock.close();
+						sock = null;
+					}
+				} catch (Exception e) {
+					System.err.println("There was an error while closing sockets and streams.");
+				}
 			}
 		});
 		
 		sendMessageAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 
-				String s = (String)JOptionPane.showInputDialog(
+				String m = (String)JOptionPane.showInputDialog(
 					mainWindowReference,
 					"This will broadcast a message to every connected peer.",
 					"Send a message",
@@ -728,11 +663,20 @@ public class Editor extends JFrame {
 					null,
 					"");
 
-				System.out.println("message: " + s);
+				System.out.println("message: " + m);
 				
-				// Try to connect
-				if ((s != null) && (s.length() > 0)) {
-					System.out.print("message is sent... " + s);
+				// Send the message if it's valid
+				if ((m != null) && (m.length() > 0)) {
+					try {
+						if (writer != null && sock != null) {
+							writer.println(m);
+							System.out.println("message is sent... " + m);
+						} else {
+							System.err.println("Not connected to anyone.");
+						}
+					} catch (Exception e) {
+						System.err.println("message couldn't be sent.");
+					}
 				}
 			}
 		});
