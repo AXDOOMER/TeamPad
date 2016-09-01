@@ -41,7 +41,7 @@ public class Editor extends JFrame {
 	String lastIP = "127.0.0.1";
 	
 	// Networking
-	int port = 8199;
+	int port = 8200;
 	Socket sock = null;
 	BufferedReader reader = null;
 	PrintWriter writer = null;
@@ -688,7 +688,7 @@ public class Editor extends JFrame {
 						}
 					}
 				} else {
-					JOptionPane.showMessageDialog(mainWindowReference, "You are not connected to anyone.", "Can't send a messages", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(mainWindowReference, "You are not connected to anyone.", "Can't send a message", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
