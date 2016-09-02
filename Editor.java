@@ -382,6 +382,12 @@ public class Editor extends JFrame {
 		fileMenu.add(closeAction);
 		fileMenu.add(exitAction);
 		
+		exitAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+				System.exit(0);
+			}
+		});
+		
 		openAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				JFileChooser fileChooser = new JFileChooser();
