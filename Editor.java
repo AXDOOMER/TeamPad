@@ -909,6 +909,8 @@ public class Editor extends JFrame {
 			TextUpdate tu = (TextUpdate) in.readObject();
 			out.writeObject(tu);
 			out.flush();
+			out.close();
+			in.close();
 		} catch (Exception ex) {
 			System.err.println(ex.getMessage());
 		}

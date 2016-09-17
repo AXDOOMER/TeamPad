@@ -1,7 +1,6 @@
-// Serialized class that can be sent across a TCP socket
+// Serializable class that can be sent across a TCP socket as an object
 
-import java.io.*;
-import java.util.Date;
+import java.io.Serializable;
 
 class TextUpdate implements Serializable
 {
@@ -35,6 +34,6 @@ class TextUpdate implements Serializable
 
 	public String toString()
 	{
-		return time%1000 + ": (" + start + ") " + text + " (" + end + ")";
+		return time%10000 + ":$" + start + "$" + text + "$" + end + "$";
 	}
 }
