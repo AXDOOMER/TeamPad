@@ -33,7 +33,8 @@ import java.awt.Image;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.util.Base64.Decoder;
-import java.net.*;
+import java.net.*;		// Sockets
+import java.util.zip.*;		// GZIP streams
 
 
 public class Editor extends JFrame {
@@ -901,11 +902,9 @@ public class Editor extends JFrame {
 		{
 			Socket clientSocket = null; 
 			
-			ObjectOutputStream out = new ObjectOutputStream(
-											clientSocket.getOutputStream()); 
-			ObjectInputStream in = new ObjectInputStream( 
-											clientSocket.getInputStream()); 
-											
+			ObjectOutputStream out = new ObjectOutputStream(new GZIPOutputStream(clientSocket.getOutputStream())); 
+			ObjectInputStream in = new ObjectInputStream(new GZIPInputStream(clientSocket.getInputStream())); 
+
 			TextUpdate tu = (TextUpdate) in.readObject();
 			out.writeObject(tu);
 			out.flush();
