@@ -896,6 +896,23 @@ public class Editor extends JFrame {
 		System.out.println(System.getProperty("os.name") + " (" + System.getProperty("os.version") + ") " + System.getProperty("os.arch") + " " + Runtime.getRuntime().availableProcessors() + "-cores");
 		System.out.println("TEAMPAD VERSION 0.1");
 		
+		// Test: remove it
+		try
+		{
+			Socket clientSocket = null; 
+			
+			ObjectOutputStream out = new ObjectOutputStream(
+											clientSocket.getOutputStream()); 
+			ObjectInputStream in = new ObjectInputStream( 
+											clientSocket.getInputStream()); 
+											
+			TextUpdate tu = (TextUpdate) in.readObject();
+			out.writeObject(tu);
+			out.flush();
+		} catch (Exception ex) {
+			System.err.println(ex.getMessage());
+		}
+		
 		try {
 			//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 			//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
