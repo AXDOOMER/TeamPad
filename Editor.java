@@ -254,7 +254,7 @@ public class Editor extends JFrame {
 		*/
 	}
 	
-	public Editor() {
+	public Editor(String[] args) {
 		mainWindowReference = this;
 		
 		// Load configuration from file
@@ -914,6 +914,22 @@ public class Editor extends JFrame {
 			System.err.println(ex.getMessage());
 		}
 		
+		if (CheckParam(args, "-connect") >= 0) {
+			System.out.println("Connect to ip parameter detected");
+		}
+		
+		if (CheckParam(args, "-host") >= 0) {
+			System.out.println("Create server parameter detected");
+		}
+		
+		if (CheckParam(args, "-l") >= 0) {
+			System.out.println("Goto line parameter detected");
+		}
+		
+		if (CheckParam(args, "-f") >= 0) {
+			System.out.println("Load file parameter detected");
+		}
+		
 		try {
 			//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 			//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -922,8 +938,17 @@ public class Editor extends JFrame {
 			System.err.println(ex.getMessage());
 		}
 		
-		Editor window = new Editor();
+		Editor window = new Editor(args);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
+	}
+	
+	public static int CheckParam(String[] args, String arg) {
+		for (int i = 0; i < args.length; i++) {
+			if (args[i].equalsIgnoreCase(arg)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 }
