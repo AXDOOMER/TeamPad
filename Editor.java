@@ -22,7 +22,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
+import java.util.*;		// import java.util.Arrays;
 import java.io.*;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
@@ -944,11 +944,6 @@ public class Editor extends JFrame {
 	}
 	
 	public static int CheckParam(String[] args, String arg) {
-		for (int i = 0; i < args.length; i++) {
-			if (args[i].equalsIgnoreCase(arg)) {
-				return i;
-			}
-		}
-		return -1;
+		return Arrays.asList(args).indexOf(arg);
 	}
 }
