@@ -582,13 +582,54 @@ public class Editor extends JFrame {
 		JMenuItem hashesAction = new JMenuItem("Hash", GetImageIcon("hash.png"));		// Show hashes
 		JMenuItem countAction = new JMenuItem("Counts", GetImageIcon("counter.png"));		// Word count, line count, caracter count, file size, etc.
 		JMenuItem runAction = new JMenuItem("Run", GetImageIcon("debug.png"));
+		JMenuItem unicodeAction = new JMenuItem("Unicode");
 		// Add
+		operationsMenu.add(unicodeAction);
 		operationsMenu.add(encryptionAction);
 		operationsMenu.add(encodeAction);
 		operationsMenu.add(hashesAction);
 		operationsMenu.add(countAction);
 		operationsMenu.addSeparator();		// Separator
 		operationsMenu.add(runAction);
+		
+		unicodeAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+				String[] fontlist = {"Strike Through", "Underline", "Overline"};
+				JComboBox jcb = new JComboBox<String>(fontlist);
+				
+				String[] options = {"OK"};
+				
+				int ok = (int)JOptionPane.showOptionDialog(
+					mainWindowReference, 
+					jcb, 
+					"Unicode combining", 
+					JOptionPane.DEFAULT_OPTION, 
+					JOptionPane.PLAIN_MESSAGE, 
+					null,
+					options, options[0]);
+										
+				if (ok >= 0) {
+					// Do something
+					String selected = jcb.getSelectedItem().toString();
+					
+					int start = txtArea.getSelectionStart();
+					String selectedText = txtArea.getSelectedText();
+					
+					String temp = "";
+					if (txtArea.getSelectedText() != null && txtArea.getSelectedText().length() > 0) {
+						for (int i = 0; i < txtArea.getSelectedText().length(); i++) {
+							if (selected.equals("Strike Through")) {
+								temp = temp + '\u0336' + txtArea.getSelectedText().toString().charAt(i);
+							}
+						}
+						txtArea.replaceSelection(temp);
+					}
+					
+					//txtArea.setFont(new Font(jcb.getSelectedItem().toString(), Font.PLAIN, textSize));
+					System.out.println("\nselected=" + jcb.getSelectedItem());
+				}
+			}
+		});	
 		
 		// Team menu
 		JMenu teamMenu = new JMenu("Team");
