@@ -620,12 +620,17 @@ public class Editor extends JFrame {
 						for (int i = 0; i < txtArea.getSelectedText().length(); i++) {
 							if (selected.equals("Strike Through")) {
 								temp = temp + '\u0336' + txtArea.getSelectedText().toString().charAt(i);
-							}
+							} else if (selected.equals("Underline")) {
+								temp = temp + '\u0332' + txtArea.getSelectedText().toString().charAt(i);
+							} else if (selected.equals("Overline")) {
+								temp = temp + '\u0305' + txtArea.getSelectedText().toString().charAt(i);
+							} else {
+								System.err.println("ERROR: Invalid item selected in ComboBox.");
+							} 
 						}
 						txtArea.replaceSelection(temp);
 					}
 					
-					//txtArea.setFont(new Font(jcb.getSelectedItem().toString(), Font.PLAIN, textSize));
 					System.out.println("\nselected=" + jcb.getSelectedItem());
 				}
 			}
