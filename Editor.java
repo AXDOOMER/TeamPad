@@ -617,6 +617,7 @@ public class Editor extends JFrame {
 					
 					String temp = "";
 					if (txtArea.getSelectedText() != null && txtArea.getSelectedText().length() > 0) {
+						// TODO: Don't strike invisible characters. 
 						for (int i = 0; i < txtArea.getSelectedText().length(); i++) {
 							if (selected.equals("Strike Through")) {
 								temp = temp + '\u0336' + txtArea.getSelectedText().toString().charAt(i);
