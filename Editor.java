@@ -879,6 +879,8 @@ public class Editor extends JFrame {
 		});
 		*/
 		txtArea.getDocument().addDocumentListener(new DocumentListener() {
+			// This counts the file size, not the characters. 
+			// If we want to count the characters, we need to remove the special ones (Unicode and control characters).
 			public void changedUpdate(DocumentEvent e) {
 				lengthLabel.setText(GetStringForLang("Size") + " " + (txtArea.getText()).length());
 			}
