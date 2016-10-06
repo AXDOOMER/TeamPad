@@ -594,8 +594,10 @@ public class Editor extends JFrame {
 		
 		unicodeAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
-				String[] fontlist = {"Strike Through", "Underline", "Overline"};
-				JComboBox jcb = new JComboBox<String>(fontlist);
+				// The special Unicode character and its name must be at the same index in their lists. 
+				String[] fontList = {"Strike Through", "Underline", "Overline"};
+				String[] characterList = {"\u0336", "\u0332", "\u0305"};
+				JComboBox jcb = new JComboBox<String>(fontList);
 				
 				String[] options = {"OK"};
 				
@@ -611,6 +613,7 @@ public class Editor extends JFrame {
 				if (ok >= 0) {
 					// Do something
 					String selected = jcb.getSelectedItem().toString();
+					int selectedIntex = jcb.getSelectedIndex();
 					
 					int start = txtArea.getSelectionStart();
 					String selectedText = txtArea.getSelectedText();
@@ -619,15 +622,7 @@ public class Editor extends JFrame {
 					if (txtArea.getSelectedText() != null && txtArea.getSelectedText().length() > 0) {
 						// TODO: Don't strike invisible characters. 
 						for (int i = 0; i < txtArea.getSelectedText().length(); i++) {
-							if (selected.equals("Strike Through")) {
-								temp = temp + '\u0336' + txtArea.getSelectedText().toString().charAt(i);
-							} else if (selected.equals("Underline")) {
-								temp = temp + '\u0332' + txtArea.getSelectedText().toString().charAt(i);
-							} else if (selected.equals("Overline")) {
-								temp = temp + '\u0305' + txtArea.getSelectedText().toString().charAt(i);
-							} else {
-								System.err.println("ERROR: Invalid item selected in ComboBox.");
-							} 
+							temp = temp + characterList[selectedIntex] + txtArea.getSelectedText().toString().charAt(i);
 						}
 						txtArea.replaceSelection(temp);
 					}
