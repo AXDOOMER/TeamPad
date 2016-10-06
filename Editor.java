@@ -597,12 +597,12 @@ public class Editor extends JFrame {
 		unicodeAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				// The special Unicode character and its name must be at the same index in their lists. 
-				String[] fontList = {"Strike Through", "Underline", "Overline"};
-				String[] characterList = {"\u0336", "\u0332", "\u0305"};
+				String[] fontList = {"Underline", "Strike Through", "Overline"};
+				String[] characterList = {"\u0332", "\u0336", "\u0305"};
 				JComboBox jcb = new JComboBox<String>(fontList);
-				
+
 				String[] options = {"OK"};
-				
+
 				int ok = (int)JOptionPane.showOptionDialog(
 					mainWindowReference, 
 					jcb, 
@@ -611,15 +611,12 @@ public class Editor extends JFrame {
 					JOptionPane.PLAIN_MESSAGE, 
 					null,
 					options, options[0]);
-										
+
 				if (ok >= 0) {
 					// Do something
 					String selected = jcb.getSelectedItem().toString();
 					int selectedIntex = jcb.getSelectedIndex();
-					
-					int start = txtArea.getSelectionStart();
-					String selectedText = txtArea.getSelectedText();
-					
+
 					StringBuilder temp = new StringBuilder();
 					if (txtArea.getSelectedText() != null && txtArea.getSelectedText().length() > 0) {
 						// TODO: Don't strike invisible characters. 
@@ -628,7 +625,7 @@ public class Editor extends JFrame {
 						}
 						txtArea.replaceSelection(temp.toString());
 					}
-					
+
 					System.out.println("\nselected=" + jcb.getSelectedItem());
 				}
 			}
