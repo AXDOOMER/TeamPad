@@ -618,13 +618,13 @@ public class Editor extends JFrame {
 					int start = txtArea.getSelectionStart();
 					String selectedText = txtArea.getSelectedText();
 					
-					String temp = "";
+					StringBuilder temp = new StringBuilder();
 					if (txtArea.getSelectedText() != null && txtArea.getSelectedText().length() > 0) {
 						// TODO: Don't strike invisible characters. 
 						for (int i = 0; i < txtArea.getSelectedText().length(); i++) {
-							temp = temp + characterList[selectedIntex] + txtArea.getSelectedText().toString().charAt(i);
+							temp.append(characterList[selectedIntex] + txtArea.getSelectedText().toString().charAt(i));
 						}
-						txtArea.replaceSelection(temp);
+						txtArea.replaceSelection(temp.toString());
 					}
 					
 					System.out.println("\nselected=" + jcb.getSelectedItem());
