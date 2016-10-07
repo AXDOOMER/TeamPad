@@ -596,37 +596,37 @@ public class Editor extends JFrame {
 		
 		unicodeAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
-				// The special Unicode character and its name must be at the same index in their lists. 
-				String[] fontList = {"Underline", "Strike Through", "Overline"};
-				String[] characterList = {"\u0332", "\u0336", "\u0305"};
-				JComboBox jcb = new JComboBox<String>(fontList);
+				if (txtArea.getSelectedText() != null && txtArea.getSelectedText().length() > 0) {
+					// The special Unicode character and its name must be at the same index in their lists. 
+					String[] fontList = {"Underline", "Strike Through", "Overline"};
+					String[] characterList = {"\u0332", "\u0336", "\u0305"};
+					JComboBox jcb = new JComboBox<String>(fontList);
 
-				String[] options = {"OK"};
+					String[] options = {"OK"};
 
-				int ok = (int)JOptionPane.showOptionDialog(
-					mainWindowReference, 
-					jcb, 
-					"Unicode combining", 
-					JOptionPane.DEFAULT_OPTION, 
-					JOptionPane.PLAIN_MESSAGE, 
-					null,
-					options, options[0]);
+					int ok = (int)JOptionPane.showOptionDialog(
+						mainWindowReference, 
+						jcb, 
+						"Unicode combining", 
+						JOptionPane.DEFAULT_OPTION, 
+						JOptionPane.PLAIN_MESSAGE, 
+						null,
+						options, options[0]);
 
-				if (ok >= 0) {
-					// Do something
-					String selected = jcb.getSelectedItem().toString();
-					int selectedIntex = jcb.getSelectedIndex();
-
-					StringBuilder temp = new StringBuilder();
-					if (txtArea.getSelectedText() != null && txtArea.getSelectedText().length() > 0) {
+					if (ok >= 0) {
+						// Do something
+						int selectedIntex = jcb.getSelectedIndex();
+						StringBuilder temp = new StringBuilder();
 						// TODO: Don't strike invisible characters. 
 						for (int i = 0; i < txtArea.getSelectedText().length(); i++) {
-							temp.append(characterList[selectedIntex] + txtArea.getSelectedText().toString().charAt(i));
+							temp.append(txtArea.getSelectedText().toString().charAt(i) + characterList[selectedIntex]);
 						}
 						txtArea.replaceSelection(temp.toString());
-					}
 
-					System.out.println("\nselected=" + jcb.getSelectedItem());
+						System.out.println("\nselected=" + jcb.getSelectedItem());
+					}
+				} else {
+					JOptionPane.showMessageDialog(mainWindowReference, "You must select text so you can do this.", "No text selected!", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});	
