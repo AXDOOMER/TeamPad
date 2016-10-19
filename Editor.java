@@ -390,7 +390,12 @@ public class Editor extends JFrame {
 		fileMenu.add(saveAction);
 		fileMenu.add(saveAsAction);
 		fileMenu.add(saveAllAction);
+		fileMenu.addSeparator();		// Separator
+		// The launcher for external programs: 
+		JMenuItem runAction = new JMenuItem("Run", GetImageIcon("debug.png"));
+		fileMenu.add(runAction);
 		fileMenu.addSeparator();	// Separator
+		
 		fileMenu.add(closeAction);
 		fileMenu.add(exitAction);
 		
@@ -570,15 +575,6 @@ public class Editor extends JFrame {
 		/*optionMenu.add(languageAction);*/
 		optionMenu.add(languagesMenu);
 		
-		// Text operations menu
-		JMenu operationsMenu = new JMenu("Operations");
-		menuBar.add(operationsMenu);
-		// Create the items of the operations menu
-		JMenuItem runAction = new JMenuItem("Run", GetImageIcon("debug.png"));
-		// Add
-		operationsMenu.addSeparator();		// Separator
-		operationsMenu.add(runAction);
-
 		// Team menu
 		JMenu teamMenu = new JMenu("Team");
 		menuBar.add(teamMenu);
