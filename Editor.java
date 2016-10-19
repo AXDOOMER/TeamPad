@@ -210,7 +210,6 @@ public class Editor extends JFrame {
 			case "netico.gif": b64string = "R0lGODlhIwAjAPcAACtQKyuq+zS5+0ax+0a5+09QT09QWE+5+0/A+1hXWFhXalhXjljI+2Ffc2FmYWHI+2pfK2pmzmpuampuhWqx8mrP+3Nuc3NuhXNuxXN1c3N1hXOT13PP+3x1fHx1vHx9jnzX+4WEhYWEqoWMhYWMmIWM14XI6YXe+45uK46Mjo6MoY6Ms46MxY6Tqo6bzo6izo654I7e+5iTxZibmJiboZibvJibxZjm+6FuK6GbmKGboaGbzqGioaGivKGixaGizqHX6aqi16qqqqqqzqrP16rt+7OxzrO5s7PAzrPA17P1+7yTK7y5vLy5zrzAvLzAzsXIxcXI18XPzs7Pzs7P19eqK9fX19fX4Nfe1+De4ODe6eDm4OD1++nm6ent6ent8vLt8vL18vvmmPv1qvv1+/v8+wEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAACH5BAEAAP8ALAAAAAAjACMAQAj/AP8JHEiwoMGDCBMOjGICAYMHDxgg2GBhikKFWr6UCWNFyIcPDS4ocBDiiJcyBDOWQTnwCgwBBGIeoLAhAYCbEKpUQXETQIGXMQnMpGhxYBkvU47wWHrEChiWB48mXcqj6dOLA60YMXGjiBIlRWJs6GAFK9YnT4JcGcLCA4sWUMhg9WKEw4muRW6cIDpwBhcAFenaxauXr8AnVMiE6WLEiAgbO2hkgUoQsWLGjiFLNjvQS5YrVBoP6WElDOeEZYxQsHuiNQjDpw+SeREgwIANGyIYCIEl9kHEXjw3oaKihowOUCgf1NrYSBIiQG5s0LFFYJkZ2IV0YW4EyfPo06tb/99aoTyH8hsmYJ+hU+d68ubRVyRY5gfu3BEWSGDSJcsUJilkkEEKTEyRhX24YZDffqYJlAUJRvggoQ82rKBAB1Mo5yCEE1JoIYa+hSjiQCpp6Bt33kEnHXUjdlbXXUXktdd8Lf6TmgnlVXBeBbC16BJMMtFEY4313aegfkw02CJiTyzW2GORTVbjgxF2+GGGZnkGmmikhSFVDgBIkIJV/W1pxGilZbVVV1+FNVZZAvkFQAhZaMWVV2CJRZZRqrHmGmxyVpTaaq39OeQ/DDkEkUQbADCDFE9UIcYYSzjxxAwANPRQRBMdOlttt5WgWwc8jGABDqjiUIAEFozgAqi46UHGW2VprdXWW3EJFIZ/BpqGllpsuQWXXIdREVwWwxV3XHK/GSscccYhNxBHHn2ggQYNkGSSidR+dG22JXlR42kBAQA7"; break;
 			case "debug.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAABWtJREFUSImFlltsXNUVhr+1L2dmzjixM74Q24lqB4MoJglpaomARFrRyAElKr0QXGgqpaUqTYT6VFWKeOlDVfWhUqU26QsqlVK1hqI+FEibCqmNRJRUlgpOYiIgYRDEzmXGji9z8ZzL3n2wHce5wC8d7Zd/rX+ts87+1xE+Ay2P/2F7mqRDzqeDPvW9mZYQgMZ0DdFSVKKPaaOHp//x/eN3yiG3TbzryOakUR9ZtbZge/u76OltpdCSI5szAMzXE6am63xcnKQ4NsHc5anYZHID02/sHf1cgcLulw8pbfY/9MQm7ulrJRcaxAvO+RU8pQQvnnot4cPzk5w6ehqXJoenXt934I4Chd1HXlndvWbPE7v6ae8I8V7Ag8gCURbZ3oNfPBEQ8ZSu1jj6xhiz49denXp979O3CLR9e/jQ6vam/UPf2UJzU4BLPVHqmY08F+diqqnDJ4vVG1hlFG15zZrAkDMgWpipRAz/5R1mS5XD5deGDlwX6P7u3zYnafLuvue20dWWpxYlFGcSwNARai5XE+aiCC+CsFA9HhyexMFdoaFntSYMDBPlKi+/dBKjzYPjf/rmqAKIonhk5+6NbOhcRbkWc64cU089aZLy082r+dH9TXTmDHmlyBhFaBShVTRZTUtGU08858ox5VrMhs5V7Ny9kSiKRwD0un1/3x625H/wvV33cX4qolTzBEphlSKJUh7rCbm7NctgTxM+SXj/SoOMFaw2WCUYJQunKOYimI9TtvY089/3yjr/wJ7/KO8ZGtjazVzqqaYQWshayFnBuZTUL0/ryfvW8Juv3cU6C/NzdRSOrBWyZiEmtFBNYS71DGztxnuGlPMy2N9XYHwmIVSQUUJWCaERjEtwzq34PJtDy4tf6eLgw21cGp+jeq1GoBQ5rRbiFIzPJPT3FXBeBhVCr+RyBFqweuEdW6O41BDeOj1LI1kpsIS+9jyv7b2XR7uzHD3xKbMzdYzVBEYTaEFyORB6VVgICQJFYIVcINRSz/+uxJSrCS5OkJsu2M14dutaTv/sQWwU887oJbJGCKwQBIqwEKJskCWrNU3a8NGs58K0JxdowozFxyn+tmZyMxQT5Qqj5yYpVh1N2pDVGm0CVD1x5I3mQiWhGnvyGVkYXCD4pIH3n93Br/51nvyzb/Jx3bDjG5uoNTwXKgl5o2k4MBmti2dK9d5qBKFV1wOtVqSNFJ/eXuDEB2V2/vxtuvu6GPrhNjSCSxxZq6hGcKZUJ6N10ZisPfZJqfZ8Z0fTCkMLAo1P3KLhLOPiVIUdvzjFdN0z+NSX6e5sJo5TvPdovVCgUsInVyuYrD1mVMYMX7lceX7D+haiOF3uwGrSNGLZrjxf//VJ/vn2OI8++SV2beoijmNc6jBauNE3A6u5crmCyphhdfbgluOVmfl4ttogEyisEawRAiO4BDCO3731IbLjj0wQ8sKLj7Nl01p8GqOF6/ylJxMoZqsNKjPz8dmDW44bAB3YgdGx0ruPPbwORPDeEwjkc4ovPvNXWu5Zz09++S2aM4Y4dnjn0EsefgNEBBSMjpXQgR3gxr4GfvveoZb2cP/2jR004hQQUu8pXavzha5mokZ8y9JZmRwyVnP8zFWmS7XDIy/cf2CFAMDA7z94pa01t+eR/la887hFgsffPOvlxIASQZRwYmyS8mT91ZEf33vrwlnCQy8VD5nA79/2QDvtoSFxHudvFRBZSGyUUKolnDxbIonk8Knneu+8MpfwyJGLm5M4Him0ZOzdXSEdTYYwo69fOhGh1ki5Wkm4MFFjaroRG2sHTuxd9/lL/0Z89c+fbk8cQ6mSQZzvzWY1APPzKSgpauePGcXwv59Zf8fflv8Dg0tHhfkv0+kAAAAASUVORK5CYII="; break;
 			case "counter.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUpJREFUeNrEU7GOgkAQnVWLu+oqSv7hLrQWJnY0RCoSuIYvOHs/gh/QEIgGKmp7G6q7Vn+B6gpyIOa4fROXqLFRi9vk8fbBzNsZsiPatqVHVo8eXELiXeLjjtxAVh/D4NP3/demabovRVGQpmlnejKZ0GazoeFwSHme02Kx+JIGb2ihV9c1jcdjiqKIuaoq3itAG4ZBZVkyI161zwaHw4Fc1yXLspihAWgA++12S2maMkOfGvRVMBitKCRJQqZp8h4tIAZ8NOh3BgjQdZ1WqxUtl0va7/fMSHAchzWAOMWnBgM47na77hQEwQzvVfJ8PmdT8LGCwVkFcRx3JwCXOssysm2b+WoFYRhyEhgBl3o0GlEQBMynFeDxJISg9XrN4Nt1ReMfTadT8jyPNfLUPZlJ1HdghjmC1YvE841z8SvxIw2+xb9P458AAwBVGwgvlZAIZgAAAABJRU5ErkJggg=="; break;
-			case "hash.png": b64string = "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"; break;
 			case "barcode-icon.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIdJREFUeNpi/P//PwMlgImBUsDIyAjCjVB6DR4aXQyshwVqji6ai3DRyGywHhYiNWIzgAnZAGYiaQwxmAHE0hhig8cFA28AK5E0LjGG69DUBcewVIqUWtHlr8MSgxwQ3wdlKiB+BqVBcs+QaSQ5mPh9kF6QUfxAzIEWVcSAv0D8g5HS7AwQYAARsDTEjF29iAAAAABJRU5ErkJggg=="; break;
 			case "key.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEFklEQVR42q2Vf0wbZRjHv+9dry3I2AYE6LkhOMUNDWwFjVEmnXQtGB3OmHTZYoKJIQ4Z+sd+6B/+sRm3qGzToKBZNC66oBijiVlMBFwHrG5aaTsW+bEFKKxgoRTYgFLau9eXq4OQLViYT3K55L27z+d5n+e5O4IVRE/13gNErapQp8alyRJb4AikmzP9If90lUrgkVH+SfWte8mywDXlRkr4hiRjJuLSUiAH3YA8HQHxagRvxMHXeh1B743CzMraX5cl6Kl5rUxIiPlMLHkM0nQ3pEA7W2XpE46dqUIikKGK24QRu4CbV7zGzMqapqgFfV/sD4gv5Gkxa4cU7GM0QcnvFn/GLyAmOQgalsFpBXjPrULYJ+yJStBWmr0nvaLk61XpHMJTNkC1nkFlEEIhhwkGf1pd90DFR7vddftcum0kW5a8CE2pMfAdfyQqQYshuTHvdGGhNPaDUhVQlrIQxzKNx0TnOuhKWuY5412naEysFZxaxvWGNe6oBOfzU/588set+pnes6wq6sgikxCVDG8TO8fvP51Rdrj04q6cV3Oq36rlgzZWtTH4/9JG1+Sr72Tb7ytdnTs76GAC1cIF9jSvkTB4Lh0Bd9iaWCAaEjbHQhpzgEt8AhPXEqMTWLemOvK/2bh5pt++WKBIKDhBAB9/P+tHANK4W9kdx2Zg+HJWlIKnUt97tFZ/kI5ZF0q0KKjS9MisRg4hlqLtqCa6HrSadNf01aYNdPQsaCgUgSwRhAcCfxP8/kEUU9RaJHr0Jw2ioB7A7ICD5apaGk7mBozCeYKDrrh8N/kveO6HBaI0NQjXMSf0r4chzaruvAMSeamFeyi6z2jQfym86xmb/1uyFFx/okAkM0No3NuOe3MoHjmUj7DnEqgUYE1c/CjPvJN9PDq/12DSz1lMTZ76f723R4tZ9OQdN4h0egjNle0Qt8h4+M0CyCQVY44OUJ8L7gYtONV8ixEYJ5ieJC6Vmr5s/GVunuc3dgd4lUGUA0OwMbiOwTcdLADlkjFqvwpH1eUznEZ93GRdgCzZk0XwolRP3vtPi/LUMC6+4UKWJYSkHUZW2xSMtnXBedJhMV8YrY8GfJtAgR8rZJkP448DDmQ+LyHpOSN7U3UYsf0GV00vg/uWBZ8XzMFzjxpFBLywH3LiwZ1AYpEBfIwOPV/+jB7rhMXcPLxsuCK48KyuY8uR7Rsx0QfH253Y8KKKwYvZlGjRU2dDb6PHYrKuDK4Iug5vo2mPj8D17ggydvJIMBez770Gw+fbceWrjnpzs8+yUnhEUCHSyW6C9WZgbVER+4Gr4W/rhvNT1ylzi6/sbuCKwGZeRx/awWPNdgaXefjmpqXG+bG5dXTf3cIVgeOlFLo2S8fmXItQcBa9Df2fs8xf+T/gc/EPG2GlKAAknnEAAAAASUVORK5CYII="; break;
 			case "Char - Number.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACVUlEQVR4nKWTT4iNURjGf+/5znfv3JvM+DObyULIvzCasEUpU2LBQlNWY8FYsLIylFAspCykbGyUZApFkixIMaMszCwmJGGSMuPO3Hu/+33fOee1mHGFsZp3ed73/DrP8z4H5ljyv0b3wNgJhRUi4eXDvUuudt/+bFXMVcBGheKVB7sXDQLY2S7vvPOtUMgmzy6IHJ8acRUgzdI97bE/qEAl49qvWTMbIE9q3VYdlVxQ9TcBNPg9sXqqDv9oX8fzfyRsvzW2HNEW36ilwfkLHS1h74QzNBzrVENSsGaovRgWjiVmUKHH2GLp6YFlI03AtuvDWjIQgEigKIGghoZO92OBWAKZGryCC1B3rG564JwnmxEUR4RMMfXgkRkgBuoK+cxZHhTn8U0P0tzHE6m33+t5f5Z7M5XlVBpu5ZPeThmv50PeecaT/OuT3k6pZL5cd1oaPLTxXfMFQ31dDqDz8otdwUdMpfrl9dEtbwEiDZtTp6TptKGvDnclTRPXXHw2v2CiSmQEVbQQqRQiQ5KH4FVEQcqxEAHVXFUEvKqE4rzym74NiQ0ulNSCFQFBRIXMeUXVWMCIEDzBKcYyTXRe8S60AIkArLr0cp9ParkPHFlctjvrXmlkvgeYjIzcaC1GbRMNN4qR46bUWhSCjh7bNPBHDgCWnXk80la2ayt1N/z+5I71S08/KhdjWysVDJWG6//Qv+Pc36FrbmHp+edtkWFt7gJZ8PcAfAj7rVGSzKEmvjtban//hThuz/LkQZqGYIy9BiA2zquZ3gd+fDy1dXg2wJzrJzbfL2rN1RKiAAAAAElFTkSuQmCC"; break;
@@ -581,7 +580,6 @@ public class Editor extends JFrame {
 		// Create the items of the operations menu
 		JMenuItem encryptionAction = new JMenuItem("Encrypt", GetImageIcon("key.png"));		// Offers BlowFish, XOR, DES, AES256, etc. 
 		JMenuItem encodeAction = new JMenuItem("Encode", GetImageIcon("barcode-icon.png"));		// Base64 en URL encoding/decoding
-		JMenuItem hashesAction = new JMenuItem("Hash", GetImageIcon("hash.png"));		// Show hashes
 		JMenuItem countAction = new JMenuItem("Counts", GetImageIcon("counter.png"));		// Word count, line count, caracter count, file size, etc.
 		JMenuItem runAction = new JMenuItem("Run", GetImageIcon("debug.png"));
 		JMenuItem unicodeAction = new JMenuItem("Unicode", GetImageIcon("039E-50x50.png"));
@@ -589,7 +587,6 @@ public class Editor extends JFrame {
 		operationsMenu.add(unicodeAction);
 		operationsMenu.add(encryptionAction);
 		operationsMenu.add(encodeAction);
-		operationsMenu.add(hashesAction);
 		operationsMenu.add(countAction);
 		operationsMenu.addSeparator();		// Separator
 		operationsMenu.add(runAction);
@@ -782,49 +779,7 @@ public class Editor extends JFrame {
 				JOptionPane.showMessageDialog(mainWindowReference, GetStringForLang("Copying"), GetStringForLang("About"), JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		
-		hashesAction.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg) {
-				try {
-					String[] functions = {"MD5", "SHA-1", "SHA-256"};
-					
-					String hashes = "UTF-8 Encoded: \n\n";
-					byte[] bytesUTF = txtArea.getText().getBytes("UTF-8");
-					
-					for (int i = 0; i < functions.length; i++) {
-						MessageDigest digest = MessageDigest.getInstance(functions[i]);
-						byte[] bytes = digest.digest(bytesUTF);
-						String str = DatatypeConverter.printHexBinary(bytes);
-						hashes += functions[i] + ":  " + str + '\n';
-					}
-					
-					hashes += "\n\n" + "ASCII Encoded: \n\n";
-					bytesUTF = txtArea.getText().getBytes("US-ASCII");
-					
-					for (int i = 0; i < functions.length; i++) {
-						MessageDigest digest = MessageDigest.getInstance(functions[i]);
-						byte[] bytes = digest.digest(bytesUTF);
-						String str = DatatypeConverter.printHexBinary(bytes);
-						hashes += functions[i] + ": " + str + '\n';
-					}
-					
-					hashes += "\n\n" + "ISO-8859-1 Encoded: \n\n";
-					bytesUTF = txtArea.getText().getBytes("ISO-8859-1");
-					
-					for (int i = 0; i < functions.length; i++) {
-						MessageDigest digest = MessageDigest.getInstance(functions[i]);
-						byte[] bytes = digest.digest(bytesUTF);
-						String str = DatatypeConverter.printHexBinary(bytes);
-						hashes += functions[i] + ": " + str + '\n';
-					}
 
-					JOptionPane.showMessageDialog(mainWindowReference, hashes, GetStringForLang("Hashing"), JOptionPane.PLAIN_MESSAGE);
-				} catch (Exception ex) {
-					System.err.println(ex.getMessage());
-				}
-			}
-		});
-		
 		countAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				JOptionPane.showMessageDialog(mainWindowReference, GetStringForLang("Word Count: \nLineCount: \nCharacter Count:\n"), GetStringForLang("Counts"), JOptionPane.INFORMATION_MESSAGE);
