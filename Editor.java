@@ -710,7 +710,7 @@ public class Editor extends JFrame {
 		// Help menu
 		JMenu helpMenu = new JMenu(GetStringForLang("Help"));
 		menuBar.add(helpMenu);
-		// Create the help of the help menu
+		// Create the menu items
 		JMenuItem aboutAction = new JMenuItem(GetStringForLang("About"), GetImageIcon("iconInfo.gif"));
 		// Add the help to the option menu
 		helpMenu.add(aboutAction);
