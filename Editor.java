@@ -209,9 +209,6 @@ public class Editor extends JFrame {
 			case "icon_disconnect_agent.bmp.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAIAAADZrBkAAAAC80lEQVR42p3TXUhTYRgHcO9EhwOVmSZ+5PwIiQQLDEwCDYXwpkKLCkTz1jU3urDA/MiZKZJTCTMyxOk2OXPqdMzNbS6n+9ApzOnc11HP0dNcui3d0Y1yvcIBiRKihz8v7/PCj/fmeUJ+/FeF/PlkWjXrFwxyuWpG9UWpVBoMSyaTyeFw7O3tHR4ensvU8zqRaMpicWwhmMu1v7kJzgMUdem0CzKZYmXF9HemNyypVBrJlEKjMcA29MDrOzw4PjrygyDItlgsJRiGOcUShWhCPilWgExMykEAk8lUcvmsUjkHwygwx0d+FMEmJsQE02oXEdQJb2y73b59t8/t8Xm9OGhBrLYNeANVa4w4fspsNkQgEBFMpzdYbXB752Ire/liWucFau/lHFEf91s/5B0YwS3WjRFI5Ds4ZWYzDEEjBFOrtRYbXMUU0V/Irud9pFxix6b1vWRZ6tqRRrZz3QoD5vUcA2k0rvJ4AoIpFbOA3X3Qe//xQEFxPyX5DSWlq/iRooJurGSur6w6BNC466vXs4/rdMtcLkSw6WmVxQrfyGvIzW+7ebsrNqWBktx6NXewqGT64R0O/0lZPyWGExs3fK9E0ts3NMQjmFAoBuxWQX1ufnNOXlvqlUZKUl1SZmfRtZbX5NSFhARTZqYjI2M3JuZzBPldeSXB+Fyhzb61araDrJntzl3v9o7btGaHaNWGuLjvwaC+5a2K9gxcluLjX1FTCWY2W0VjEmh4DHjuoHBgYJzHHR0aHPkUTjJQqbMMJgAgOzU1eFYWJzz8bEoCgUBVVTWNxqDTmWVlTxmM57W19ZzQ0EUqVc9iAbMZDC4Clp4+SiKdMQzDeno+zMyoYHhzG8OMRqNUKntfWChJTATGUl4RYJ7+iZLJ48XFZ8zv9zc1NWm0OgRFf56cBINBj8erhiBOCnU+LMwcHb0eFWWPjJSSSLBQ+Nso4zjO5/M7Othd3d1sNpvFYjU3N8/xeJOlpZMREWoyWZedjchk5y7Ov9Qvcu7ZQLq8obwAAAAASUVORK5CYII="; break;
 			case "netico.gif": b64string = "R0lGODlhIwAjAPcAACtQKyuq+zS5+0ax+0a5+09QT09QWE+5+0/A+1hXWFhXalhXjljI+2Ffc2FmYWHI+2pfK2pmzmpuampuhWqx8mrP+3Nuc3NuhXNuxXN1c3N1hXOT13PP+3x1fHx1vHx9jnzX+4WEhYWEqoWMhYWMmIWM14XI6YXe+45uK46Mjo6MoY6Ms46MxY6Tqo6bzo6izo654I7e+5iTxZibmJiboZibvJibxZjm+6FuK6GbmKGboaGbzqGioaGivKGixaGizqHX6aqi16qqqqqqzqrP16rt+7OxzrO5s7PAzrPA17P1+7yTK7y5vLy5zrzAvLzAzsXIxcXI18XPzs7Pzs7P19eqK9fX19fX4Nfe1+De4ODe6eDm4OD1++nm6ent6ent8vLt8vL18vvmmPv1qvv1+/v8+wEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAACH5BAEAAP8ALAAAAAAjACMAQAj/AP8JHEiwoMGDCBMOjGICAYMHDxgg2GBhikKFWr6UCWNFyIcPDS4ocBDiiJcyBDOWQTnwCgwBBGIeoLAhAYCbEKpUQXETQIGXMQnMpGhxYBkvU47wWHrEChiWB48mXcqj6dOLA60YMXGjiBIlRWJs6GAFK9YnT4JcGcLCA4sWUMhg9WKEw4muRW6cIDpwBhcAFenaxauXr8AnVMiE6WLEiAgbO2hkgUoQsWLGjiFLNjvQS5YrVBoP6WElDOeEZYxQsHuiNQjDpw+SeREgwIANGyIYCIEl9kHEXjw3oaKihowOUCgf1NrYSBIiQG5s0LFFYJkZ2IV0YW4EyfPo06tb/99aoTyH8hsmYJ+hU+d68ubRVyRY5gfu3BEWSGDSJcsUJilkkEEKTEyRhX24YZDffqYJlAUJRvggoQ82rKBAB1Mo5yCEE1JoIYa+hSjiQCpp6Bt33kEnHXUjdlbXXUXktdd8Lf6TmgnlVXBeBbC16BJMMtFEY4313aegfkw02CJiTyzW2GORTVbjgxF2+GGGZnkGmmikhSFVDgBIkIJV/W1pxGilZbVVV1+FNVZZAvkFQAhZaMWVV2CJRZZRqrHmGmxyVpTaaq39OeQ/DDkEkUQbADCDFE9UIcYYSzjxxAwANPRQRBMdOlttt5WgWwc8jGABDqjiUIAEFozgAqi46UHGW2VprdXWW3EJFIZ/BpqGllpsuQWXXIdREVwWwxV3XHK/GSscccYhNxBHHn2ggQYNkGSSidR+dG22JXlR42kBAQA7"; break;
 			case "debug.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAABWtJREFUSImFlltsXNUVhr+1L2dmzjixM74Q24lqB4MoJglpaomARFrRyAElKr0QXGgqpaUqTYT6VFWKeOlDVfWhUqU26QsqlVK1hqI+FEibCqmNRJRUlgpOYiIgYRDEzmXGji9z8ZzL3n2wHce5wC8d7Zd/rX+ts87+1xE+Ay2P/2F7mqRDzqeDPvW9mZYQgMZ0DdFSVKKPaaOHp//x/eN3yiG3TbzryOakUR9ZtbZge/u76OltpdCSI5szAMzXE6am63xcnKQ4NsHc5anYZHID02/sHf1cgcLulw8pbfY/9MQm7ulrJRcaxAvO+RU8pQQvnnot4cPzk5w6ehqXJoenXt934I4Chd1HXlndvWbPE7v6ae8I8V7Ag8gCURbZ3oNfPBEQ8ZSu1jj6xhiz49denXp979O3CLR9e/jQ6vam/UPf2UJzU4BLPVHqmY08F+diqqnDJ4vVG1hlFG15zZrAkDMgWpipRAz/5R1mS5XD5deGDlwX6P7u3zYnafLuvue20dWWpxYlFGcSwNARai5XE+aiCC+CsFA9HhyexMFdoaFntSYMDBPlKi+/dBKjzYPjf/rmqAKIonhk5+6NbOhcRbkWc64cU089aZLy082r+dH9TXTmDHmlyBhFaBShVTRZTUtGU08858ox5VrMhs5V7Ny9kSiKRwD0un1/3x625H/wvV33cX4qolTzBEphlSKJUh7rCbm7NctgTxM+SXj/SoOMFaw2WCUYJQunKOYimI9TtvY089/3yjr/wJ7/KO8ZGtjazVzqqaYQWshayFnBuZTUL0/ryfvW8Juv3cU6C/NzdRSOrBWyZiEmtFBNYS71DGztxnuGlPMy2N9XYHwmIVSQUUJWCaERjEtwzq34PJtDy4tf6eLgw21cGp+jeq1GoBQ5rRbiFIzPJPT3FXBeBhVCr+RyBFqweuEdW6O41BDeOj1LI1kpsIS+9jyv7b2XR7uzHD3xKbMzdYzVBEYTaEFyORB6VVgICQJFYIVcINRSz/+uxJSrCS5OkJsu2M14dutaTv/sQWwU887oJbJGCKwQBIqwEKJskCWrNU3a8NGs58K0JxdowozFxyn+tmZyMxQT5Qqj5yYpVh1N2pDVGm0CVD1x5I3mQiWhGnvyGVkYXCD4pIH3n93Br/51nvyzb/Jx3bDjG5uoNTwXKgl5o2k4MBmti2dK9d5qBKFV1wOtVqSNFJ/eXuDEB2V2/vxtuvu6GPrhNjSCSxxZq6hGcKZUJ6N10ZisPfZJqfZ8Z0fTCkMLAo1P3KLhLOPiVIUdvzjFdN0z+NSX6e5sJo5TvPdovVCgUsInVyuYrD1mVMYMX7lceX7D+haiOF3uwGrSNGLZrjxf//VJ/vn2OI8++SV2beoijmNc6jBauNE3A6u5crmCyphhdfbgluOVmfl4ttogEyisEawRAiO4BDCO3731IbLjj0wQ8sKLj7Nl01p8GqOF6/ylJxMoZqsNKjPz8dmDW44bAB3YgdGx0ruPPbwORPDeEwjkc4ovPvNXWu5Zz09++S2aM4Y4dnjn0EsefgNEBBSMjpXQgR3gxr4GfvveoZb2cP/2jR004hQQUu8pXavzha5mokZ8y9JZmRwyVnP8zFWmS7XDIy/cf2CFAMDA7z94pa01t+eR/la887hFgsffPOvlxIASQZRwYmyS8mT91ZEf33vrwlnCQy8VD5nA79/2QDvtoSFxHudvFRBZSGyUUKolnDxbIonk8Knneu+8MpfwyJGLm5M4Him0ZOzdXSEdTYYwo69fOhGh1ki5Wkm4MFFjaroRG2sHTuxd9/lL/0Z89c+fbk8cQ6mSQZzvzWY1APPzKSgpauePGcXwv59Zf8fflv8Dg0tHhfkv0+kAAAAASUVORK5CYII="; break;
-			case "counter.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUpJREFUeNrEU7GOgkAQnVWLu+oqSv7hLrQWJnY0RCoSuIYvOHs/gh/QEIgGKmp7G6q7Vn+B6gpyIOa4fROXqLFRi9vk8fbBzNsZsiPatqVHVo8eXELiXeLjjtxAVh/D4NP3/demabovRVGQpmlnejKZ0GazoeFwSHme02Kx+JIGb2ihV9c1jcdjiqKIuaoq3itAG4ZBZVkyI161zwaHw4Fc1yXLspihAWgA++12S2maMkOfGvRVMBitKCRJQqZp8h4tIAZ8NOh3BgjQdZ1WqxUtl0va7/fMSHAchzWAOMWnBgM47na77hQEwQzvVfJ8PmdT8LGCwVkFcRx3JwCXOssysm2b+WoFYRhyEhgBl3o0GlEQBMynFeDxJISg9XrN4Nt1ReMfTadT8jyPNfLUPZlJ1HdghjmC1YvE841z8SvxIw2+xb9P458AAwBVGwgvlZAIZgAAAABJRU5ErkJggg=="; break;
-			case "barcode-icon.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIdJREFUeNpi/P//PwMlgImBUsDIyAjCjVB6DR4aXQyshwVqji6ai3DRyGywHhYiNWIzgAnZAGYiaQwxmAHE0hhig8cFA28AK5E0LjGG69DUBcewVIqUWtHlr8MSgxwQ3wdlKiB+BqVBcs+QaSQ5mPh9kF6QUfxAzIEWVcSAv0D8g5HS7AwQYAARsDTEjF29iAAAAABJRU5ErkJggg=="; break;
-			case "key.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEFklEQVR42q2Vf0wbZRjHv+9dry3I2AYE6LkhOMUNDWwFjVEmnXQtGB3OmHTZYoKJIQ4Z+sd+6B/+sRm3qGzToKBZNC66oBijiVlMBFwHrG5aaTsW+bEFKKxgoRTYgFLau9eXq4OQLViYT3K55L27z+d5n+e5O4IVRE/13gNErapQp8alyRJb4AikmzP9If90lUrgkVH+SfWte8mywDXlRkr4hiRjJuLSUiAH3YA8HQHxagRvxMHXeh1B743CzMraX5cl6Kl5rUxIiPlMLHkM0nQ3pEA7W2XpE46dqUIikKGK24QRu4CbV7zGzMqapqgFfV/sD4gv5Gkxa4cU7GM0QcnvFn/GLyAmOQgalsFpBXjPrULYJ+yJStBWmr0nvaLk61XpHMJTNkC1nkFlEEIhhwkGf1pd90DFR7vddftcum0kW5a8CE2pMfAdfyQqQYshuTHvdGGhNPaDUhVQlrIQxzKNx0TnOuhKWuY5412naEysFZxaxvWGNe6oBOfzU/588set+pnes6wq6sgikxCVDG8TO8fvP51Rdrj04q6cV3Oq36rlgzZWtTH4/9JG1+Sr72Tb7ytdnTs76GAC1cIF9jSvkTB4Lh0Bd9iaWCAaEjbHQhpzgEt8AhPXEqMTWLemOvK/2bh5pt++WKBIKDhBAB9/P+tHANK4W9kdx2Zg+HJWlIKnUt97tFZ/kI5ZF0q0KKjS9MisRg4hlqLtqCa6HrSadNf01aYNdPQsaCgUgSwRhAcCfxP8/kEUU9RaJHr0Jw2ioB7A7ICD5apaGk7mBozCeYKDrrh8N/kveO6HBaI0NQjXMSf0r4chzaruvAMSeamFeyi6z2jQfym86xmb/1uyFFx/okAkM0No3NuOe3MoHjmUj7DnEqgUYE1c/CjPvJN9PDq/12DSz1lMTZ76f723R4tZ9OQdN4h0egjNle0Qt8h4+M0CyCQVY44OUJ8L7gYtONV8ixEYJ5ieJC6Vmr5s/GVunuc3dgd4lUGUA0OwMbiOwTcdLADlkjFqvwpH1eUznEZ93GRdgCzZk0XwolRP3vtPi/LUMC6+4UKWJYSkHUZW2xSMtnXBedJhMV8YrY8GfJtAgR8rZJkP448DDmQ+LyHpOSN7U3UYsf0GV00vg/uWBZ8XzMFzjxpFBLywH3LiwZ1AYpEBfIwOPV/+jB7rhMXcPLxsuCK48KyuY8uR7Rsx0QfH253Y8KKKwYvZlGjRU2dDb6PHYrKuDK4Iug5vo2mPj8D17ggydvJIMBez770Gw+fbceWrjnpzs8+yUnhEUCHSyW6C9WZgbVER+4Gr4W/rhvNT1ylzi6/sbuCKwGZeRx/awWPNdgaXefjmpqXG+bG5dXTf3cIVgeOlFLo2S8fmXItQcBa9Df2fs8xf+T/gc/EPG2GlKAAknnEAAAAASUVORK5CYII="; break;
 			case "Char - Number.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACVUlEQVR4nKWTT4iNURjGf+/5znfv3JvM+DObyULIvzCasEUpU2LBQlNWY8FYsLIylFAspCykbGyUZApFkixIMaMszCwmJGGSMuPO3Hu/+33fOee1mHGFsZp3ed73/DrP8z4H5ljyv0b3wNgJhRUi4eXDvUuudt/+bFXMVcBGheKVB7sXDQLY2S7vvPOtUMgmzy6IHJ8acRUgzdI97bE/qEAl49qvWTMbIE9q3VYdlVxQ9TcBNPg9sXqqDv9oX8fzfyRsvzW2HNEW36ilwfkLHS1h74QzNBzrVENSsGaovRgWjiVmUKHH2GLp6YFlI03AtuvDWjIQgEigKIGghoZO92OBWAKZGryCC1B3rG564JwnmxEUR4RMMfXgkRkgBuoK+cxZHhTn8U0P0tzHE6m33+t5f5Z7M5XlVBpu5ZPeThmv50PeecaT/OuT3k6pZL5cd1oaPLTxXfMFQ31dDqDz8otdwUdMpfrl9dEtbwEiDZtTp6TptKGvDnclTRPXXHw2v2CiSmQEVbQQqRQiQ5KH4FVEQcqxEAHVXFUEvKqE4rzym74NiQ0ulNSCFQFBRIXMeUXVWMCIEDzBKcYyTXRe8S60AIkArLr0cp9ParkPHFlctjvrXmlkvgeYjIzcaC1GbRMNN4qR46bUWhSCjh7bNPBHDgCWnXk80la2ayt1N/z+5I71S08/KhdjWysVDJWG6//Qv+Pc36FrbmHp+edtkWFt7gJZ8PcAfAj7rVGSzKEmvjtban//hThuz/LkQZqGYIy9BiA2zquZ3gd+fDy1dXg2wJzrJzbfL2rN1RKiAAAAAElFTkSuQmCC"; break;
 			case "WordWrap.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABhSURBVDhPY2AYFCA+Pv4/DIMchMzHJ049x2OzEZcrqGcrsknY/ElMWFDPNfjCANklEBv//0dgot3wTx5TKcggggCk8W8zxEZ0QNAAkGZk52JjU+QCgpqRFWALA5IMoKFiALpnfwxKe4MuAAAAAElFTkSuQmCC"; break;
 			case "ui-status-bar.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABPklEQVR42sRTPWqEUBAefSZBVEhpERZkwco2lQhpcgELj+DeYGHZOgjb5SRW3sAjeIJU24hFYuHPauYzWTFsDCQWGRjmvZnv+957zij1fU9LTKaFtlhACYJAj6LI3O12R37O27ngOM4XYJZl41qSJH27fTIPh/1RbtvW5Nw94ul0IrhlWRcnIXeuTzkQWPHmEZGd1us1aZp2IYAcasBMORC4480Dom3bpOv67HtRA2bKUZqmucUNEVVV3eCEn4wxxNibM0ep61qgEIbhs+/7hLlI05Q8z6O5GYnjeIjgQmBoJatRURRUVRXleT6uvzNgPwXk8QZIJkkygqbrORtuUJblFfeVXNelrkOL4A0LDl+bcx19vERw/5XBhbjGLNDANQxjI4RY/WUKeSZeJHxYdgNT+Us+2vUq/fvf+C7AAC80vJSqj+gnAAAAAElFTkSuQmCC"; break;
@@ -232,7 +229,6 @@ public class Editor extends JFrame {
 			case "saveas_icon.gif": b64string = "R0lGODlhEAAQAMZAAP8A/wAAAB8ubh8yiSMzeylBiC8wMjAwYDA4oDBAoDBIsDBOlDZcoUBAoEBIsEBQwEZGRlBQsGBYsGlaNnB44IdLSouGgI6GiJCI8JCQ/5OiqplqaZ5yPqB3P6CY/6Cg/6OdjrCGjLCo/7y31MC4/8DA/8RyccrE4NGpU9WIhdXV1dfX19zc3ODo8OXl5eXo7efq7ujr7+rs7+zu8O3v8e3v8+/x8fDw8PD4//FtbfT09Pbx4//FxP/LUP/hcf/9nP///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH5BAEKAH8ALAAAAAAQABAAAAejgH+Cg4SFggyIiYqJEIclHkCRkkA4DxKNfwwkGJOROEAPB5gMJRSdODctOTkpggulCrGyChYhPCaOJSUkuyQkFyAaGxWOAsbHFz8+IAajJAMuLCw3Fso9HA+YCyQELCosyT49HQsRoyIEKyzV4hwFBQ6jHwUsJyjtLu8Nox4F1DsoOEAjUCDBqAwFdASYcGKFCx0ECCDANAKCxYsQmmE0xJFQIAA7"; break;
 			case "file_edit.gif": b64string = "R0lGODlhFgAWAOd8AAA8X7P4r3HaT5wlAABbw5u5zc3StQA6qZ6lsCakEWGk1bjL59+mQv/ObBRGoP37+YLV/4bM9x9Xj5p0Z22TsOr01TmN14I2H4KUq//xtmeErZ5rKZjmsdHc7NL/0KCnhVpfeWuDpOJOPqXo/1a5b459bC1608z99KyzuXGnyzx+sqfH6//bm/jDY+v//9zZ2p/4/+Xk44eYq114o215iq/X9M4+IWM0K1CJxvf3937E8/Tx77aUhRqAQEKpTZXd/wB78eHHvf+uN6FaN6zE5pTR8bX09ypswLLu/3LIltTV1tv7/mO77V5wisGCIHC98f/phrLC0LauqJ3n2s/t+rHV3fbf2727uR1xmkvAKtLPz/b38lRni27VdLa7ytv/9sDe9Y8aAJKsuv/ASdiShKvr6jVmqO3u7xZ0zpvX9KGVk2SXwbz6//r8/VPFM875+8GBZf/mrABZvuHf3mqg1WqLu2Cv6Jfq/7y4t1e4/8fEwqh5RP///7X2//b0wMLw/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH5BAEKAIAALAAAAAAWABYAAAj+APkI5POgoMGCOXII3GLFyoOBAl/giaHlSgw9el5I0cJnCxwbIsicGdiBBg0vNEKgaCJDBhcEMQpcADmAh8IOdCysEYPDAgYTKuqYCFFHh5chA8JM2NFmwZM/URBQKYCCipgqYGSkoOJCB4gbUto01dFmjhI+czq06fDmT5U4cVbkAaIiBp82RCxQ4eOCSlskSH4UqdCghQEKErwIbLMCDRg+NYqkmTy5CosxLKA4sTmQCIEafKhQWUJ6yQk/Y1pkYLDHbmcCafi6WPKmzwgtY4TEabHBSxuInou0SVOkOAQIBoQ00KzGBUQ+wV2MGAG47YogUBiU6PAcOoEILt6ouPhywkMAFWY+0Kgz8rnnJ0s4CBDgJkuWHgCwmKjjGjiBJ190kYAPJJCQBAcpWHCEBnN0994bU0xRhhFGADbCE0fM0OBzCxDAxBsW/hBBBDro8IMCGrzQ3QJy2MEGiSNG8MOMMDChwVkcHmBHHzNOdwcETyiwxgwI7NBdBw6YwCOQKGqAAQJeKGFkd03VsQYFIciAghYxnLHDQ91BdMYLL5yxxRZhdhcQADs="; break;
 			case "spellcheck.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJ0SURBVHjaYvz//z8DJQAggJgYKAQAAcQCIpz7bGdys3MZbMreae7QaxPPzcFZ/uHDp8OMjAyKR6pOuukXaJX8/f3X/Me3P+8Y/v1nuLPwXjrMAIAAYgR5wW+q+8nf/35//PbzZ8W/v/90gYqtjtWcSrdpt7j26dkHZzZejr1n2i5oYXMBQAAxOvfZxP/9/9/q37//t//9+asK1HyMhYO1/OfnH0++vv96//e3P8f+/mWwurPgbjqyRvGCGRyvXpn9BQggJhYW5uh///8LATWqcnFzeP76/pvh84uPh082nXP78/2f0J+f/17x8PLYotgad8H4lZDTBQYGpokAAcQCtJn/YPFRN5CESaX+zN/ff4uy8bDbqiQqz+Tk4pD7+eXXhc/vPm3UTNLY9effHykDGTsZcaManjdf/nz4++JHE0AAMRIbjYxR5yQY1Hj2u6tzaxy5+/Xr111v9P8fsroLEEAMIAPAhtTeTGAov+kK4yNjhtCzPuK9d/8Ernjyn7n2+jsGy8PSMDmAAGKBW/GD4ZSkHtc5xpobqxle/Un7P0vnO2PEOSYGFoaJlp6iOeLsTAzrz35+wXDgleH/U3YvYNoAAgjFC4xpV6p9vURatt358vzviU9pDAocte76vGacTEwMG06/f8xw4J3Z/wsIzSAAEECoBsRdYGFQ4DodZsBv8Pj9DwZ9UQ6GFx9+M2w48eE+w4E3Vv+vObxADxuAAMIIREavUwrCNkJ30oz5ma8+/86w6di7O0Cbbf/fcnqBLXABAogBa6CZHixymnb/P0Py+XsMirslsKmBYYAAwi2hubeDQRa/ZhAGCCBGSrMzQIABAIDZeasHWK/yAAAAAElFTkSuQmCC"; break;
-			case "039E-50x50.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAQAAAADQ4RFAAAA1UlEQVQ4y8WUvQ4BQRSFv1Gp/LyEROUpRSdarWdQEOsdvIBKKERidXbDHIWx2WXYyUq4092ck7n57pkxEoAhrARAjQr1nalOnzUp8pyENQPquSklSWikshrKiZWZtqWmTWYyd3q/BFHZZEi8ovPT8p9uWnlNL908H9RTpFg261idtFRPBVmRnilN3V/pQZeIIzZLneXIgs5nEJE3QPPPIGKannFi2gUQ1bNnuAaJrVuKA7EPMh2K9KZBplmeHmpoop3Stw/woo3GajmKRgr/wB5x+l2MbpjlJZjwIl1UAAAAAElFTkSuQmCC"; break;
 			//case "": b64string = ""; break;
 			
 			default: System.err.println("Base64 data for image '" + textId + "' not found.");
@@ -578,56 +574,11 @@ public class Editor extends JFrame {
 		JMenu operationsMenu = new JMenu("Operations");
 		menuBar.add(operationsMenu);
 		// Create the items of the operations menu
-		JMenuItem encryptionAction = new JMenuItem("Encrypt", GetImageIcon("key.png"));		// Offers BlowFish, XOR, DES, AES256, etc. 
-		JMenuItem encodeAction = new JMenuItem("Encode", GetImageIcon("barcode-icon.png"));		// Base64 en URL encoding/decoding
-		JMenuItem countAction = new JMenuItem("Counts", GetImageIcon("counter.png"));		// Word count, line count, caracter count, file size, etc.
 		JMenuItem runAction = new JMenuItem("Run", GetImageIcon("debug.png"));
-		JMenuItem unicodeAction = new JMenuItem("Unicode", GetImageIcon("039E-50x50.png"));
 		// Add
-		operationsMenu.add(unicodeAction);
-		operationsMenu.add(encryptionAction);
-		operationsMenu.add(encodeAction);
-		operationsMenu.add(countAction);
 		operationsMenu.addSeparator();		// Separator
 		operationsMenu.add(runAction);
-		
-		unicodeAction.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg) {
-				if (txtArea.getSelectedText() != null && txtArea.getSelectedText().length() > 0) {
-					// The special Unicode character and its name must be at the same index in their lists. 
-					String[] fontList = {"Underline", "Strike Through", "Overline"};
-					String[] characterList = {"\u0332", "\u0336", "\u0305"};
-					JComboBox jcb = new JComboBox<String>(fontList);
 
-					String[] options = {"OK"};
-
-					int ok = (int)JOptionPane.showOptionDialog(
-						mainWindowReference, 
-						jcb, 
-						"Unicode combining", 
-						JOptionPane.DEFAULT_OPTION, 
-						JOptionPane.PLAIN_MESSAGE, 
-						null,
-						options, options[0]);
-
-					if (ok >= 0) {
-						// Do something
-						int selectedIntex = jcb.getSelectedIndex();
-						StringBuilder temp = new StringBuilder();
-						// TODO: Don't strike invisible characters. 
-						for (int i = 0; i < txtArea.getSelectedText().length(); i++) {
-							temp.append(txtArea.getSelectedText().toString().charAt(i) + characterList[selectedIntex]);
-						}
-						txtArea.replaceSelection(temp.toString());
-
-						System.out.println("\nselected=" + jcb.getSelectedItem());
-					}
-				} else {
-					JOptionPane.showMessageDialog(mainWindowReference, "You must select text so you can do this.", "No text selected!", JOptionPane.WARNING_MESSAGE);
-				}
-			}
-		});	
-		
 		// Team menu
 		JMenu teamMenu = new JMenu("Team");
 		menuBar.add(teamMenu);
@@ -780,12 +731,6 @@ public class Editor extends JFrame {
 			}
 		});
 
-		countAction.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg) {
-				JOptionPane.showMessageDialog(mainWindowReference, GetStringForLang("Word Count: \nLineCount: \nCharacter Count:\n"), GetStringForLang("Counts"), JOptionPane.INFORMATION_MESSAGE);
-			}
-		});
-		
 		runAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				String p = (String)JOptionPane.showInputDialog(
