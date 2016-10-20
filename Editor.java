@@ -82,8 +82,28 @@ public class Editor extends JFrame {
 				case "Exit": translation = "Exit"; break;
 				
 				case "Edit": translation = "Edit"; break;
+				case "Undo": translation = "Undo"; break;
+				case "Redo": translation = "Redo"; break;
+				case "Cut": translation = "Cut"; break;
+				case "Copy": translation = "Copy"; break;
+				case "Paste": translation = "Paste"; break;
+				case "Select All": translation = "Select All"; break;
+				case "Select Line": translation = "Select Line"; break;
+				case "Find and replace": translation = "Find and replace"; break;
+				
 				case "Option": translation = "Option"; break;
+				case "Increase text size": translation = "Increase text size"; break;
+				case "Decrease text size": translation = "Decrease text size"; break;
+				case "Word warp": translation = "Word warp"; break;
+				case "Status bar": translation = "Status bar"; break;
+				case "Font": translation = "Font"; break;
+				case "Language": translation = "Language"; break;
+				
 				case "Team": translation = "Team"; break;
+				case "Allow connections": translation = "Allow connections"; break;
+				case "Connect to": translation = "Connect to..."; break;
+				case "Send a message": translation = "Send a message..."; break;
+				case "Disconnect all": translation = "Disconnect all"; break;
 				
 				case "Help": translation = "Help"; break;
 				case "About": translation = "About"; break;
@@ -115,8 +135,28 @@ public class Editor extends JFrame {
 				case "Exit": translation = "Quitter"; break;
 				
 				case "Edit": translation = "Édition"; break;
+				case "Undo": translation = "Retour"; break;
+				case "Redo": translation = "Refaire"; break;
+				case "Cut": translation = "Couper"; break;
+				case "Copy": translation = "Copier"; break;
+				case "Paste": translation = "Coller"; break;
+				case "Select All": translation = "Tout sélectionner"; break;
+				case "Select Line": translation = "Sélectionner la ligne"; break;
+				case "Find and replace": translation = "Trouver et remplacer"; break;
+				
 				case "Option": translation = "Options"; break;
+				case "Increase text size": translation = "Augmenter la taille du texte"; break;
+				case "Decrease text size": translation = "Réduire la taille du texte"; break;
+				case "Word warp": translation = "Retour à la ligne"; break;
+				case "Status bar": translation = "Barre d'état"; break;
+				case "Font": translation = "Police"; break;
+				case "Language": translation = "Langue"; break;
+				
 				case "Team": translation = "Équipe"; break;
+				case "Allow connections": translation = "Permettre des connexions"; break;
+				case "Connect to": translation = "Se connecter..."; break;
+				case "Send a message": translation = "Envoyer un message..."; break;
+				case "Disconnect all": translation = "Tout déconnecter"; break;
 				
 				case "Help": translation = "Aide"; break;
 				case "About": translation = "À propos"; break;
@@ -453,14 +493,14 @@ public class Editor extends JFrame {
 		JMenu editMenu = new JMenu(GetStringForLang("Edit"));
 		menuBar.add(editMenu);
 		// Create the items of the edit menu
-		JMenuItem undoAction = new JMenuItem("Undo", GetImageIcon("back_undo.png"));
-		JMenuItem redoAction = new JMenuItem("Redo", GetImageIcon("botao-refazer.png"));
-		JMenuItem cutAction = new JMenuItem("Cut", GetImageIcon("mai1444425541180_lowres_en-us.png"));
-		JMenuItem copyAction = new JMenuItem("Copy", GetImageIcon("icon_copy_n.png"));
-		JMenuItem pasteAction = new JMenuItem("Paste", GetImageIcon("1398640998.png"));
-		JMenuItem selectAllAction = new JMenuItem("Select All", GetImageIcon("edit_select_all.png"));
-		JMenuItem selectLineAction = new JMenuItem("Select Line", GetImageIcon("editor_panel_tab_icon.gif"));
-		JMenuItem findAction = new JMenuItem("Find and replace", GetImageIcon("edit_find_replace.png"));
+		JMenuItem undoAction = new JMenuItem(GetStringForLang("Undo"), GetImageIcon("back_undo.png"));
+		JMenuItem redoAction = new JMenuItem(GetStringForLang("Redo"), GetImageIcon("botao-refazer.png"));
+		JMenuItem cutAction = new JMenuItem(GetStringForLang("Cut"), GetImageIcon("mai1444425541180_lowres_en-us.png"));
+		JMenuItem copyAction = new JMenuItem(GetStringForLang("Copy"), GetImageIcon("icon_copy_n.png"));
+		JMenuItem pasteAction = new JMenuItem(GetStringForLang("Paste"), GetImageIcon("1398640998.png"));
+		JMenuItem selectAllAction = new JMenuItem(GetStringForLang("Select All"), GetImageIcon("edit_select_all.png"));
+		JMenuItem selectLineAction = new JMenuItem(GetStringForLang("Select Line"), GetImageIcon("editor_panel_tab_icon.gif"));
+		JMenuItem findAction = new JMenuItem(GetStringForLang("Find and replace"), GetImageIcon("edit_find_replace.png"));
 		// Add the items to the edit menu
 		editMenu.add(undoAction);
 		editMenu.add(redoAction);
@@ -495,7 +535,7 @@ public class Editor extends JFrame {
 		JMenu optionMenu = new JMenu(GetStringForLang("Option"));
 		menuBar.add(optionMenu);
 		// Create the items of the option menu
-		JMenuItem increaseAction = new JMenuItem("Increase text size", GetImageIcon("nav_zoomin.png"));
+		JMenuItem increaseAction = new JMenuItem(GetStringForLang("Increase text size"), GetImageIcon("nav_zoomin.png"));
 		// Add an action to zoom in
 		increaseAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
@@ -504,7 +544,7 @@ public class Editor extends JFrame {
 			}
 		});
 		
-		JMenuItem decreaseAction = new JMenuItem("Decrease text size", GetImageIcon("nav_zoomout.png"));
+		JMenuItem decreaseAction = new JMenuItem(GetStringForLang("Decrease text size"), GetImageIcon("nav_zoomout.png"));
 		// Add an action to zoom out
 		decreaseAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
@@ -513,11 +553,11 @@ public class Editor extends JFrame {
 			}
 		});
 
-		JCheckBoxMenuItem wordWarpAction = new JCheckBoxMenuItem("Word warp", GetImageIcon("WordWrap.png"));
-		JCheckBoxMenuItem statusBarAction = new JCheckBoxMenuItem("Status bar", GetImageIcon("ui-status-bar.png"));
+		JCheckBoxMenuItem wordWarpAction = new JCheckBoxMenuItem(GetStringForLang("Word warp"), GetImageIcon("WordWrap.png"));
+		JCheckBoxMenuItem statusBarAction = new JCheckBoxMenuItem(GetStringForLang("Status bar"), GetImageIcon("ui-status-bar.png"));
 		
 		// Fonts
-		JMenuItem fontsAction = new JMenuItem("Font", GetImageIcon("truetype.gif"));
+		JMenuItem fontsAction = new JMenuItem(GetStringForLang("Font"), GetImageIcon("truetype.gif"));
 
 		fontsAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
@@ -547,7 +587,7 @@ public class Editor extends JFrame {
 		});	
 
 		// Languages
-		JMenu languagesMenu = new JMenu("Language");
+		JMenu languagesMenu = new JMenu(GetStringForLang("Language"));
 		languagesMenu.setIcon(GetImageIcon("bubble_icon.gif"));
 		ButtonGroup languagesGroup = new ButtonGroup();
 		String[] languages = {"Chinese", "English", "French", "German", "Japanese", "Spanish", "Russian"};
@@ -589,10 +629,10 @@ public class Editor extends JFrame {
 		JMenu teamMenu = new JMenu(GetStringForLang("Team"));
 		menuBar.add(teamMenu);
 		// Create the items of the team menu
-		JCheckBoxMenuItem allowConnectionsAction = new JCheckBoxMenuItem("Allow connections", GetImageIcon("netico.gif"));
-		JMenuItem connectToAction = new JMenuItem("Connect to...", GetImageIcon("network_icon.jpg"));
-		JMenuItem sendMessageAction = new JMenuItem("Send a message...", GetImageIcon("c02228162.jpg"));
-		JMenuItem disconnectAllAction = new JMenuItem("Disconnect all", GetImageIcon("icon_disconnect_agent.bmp.png"));
+		JCheckBoxMenuItem allowConnectionsAction = new JCheckBoxMenuItem(GetStringForLang("Allow connections"), GetImageIcon("netico.gif"));
+		JMenuItem connectToAction = new JMenuItem(GetStringForLang("Connect to"), GetImageIcon("network_icon.jpg"));
+		JMenuItem sendMessageAction = new JMenuItem(GetStringForLang("Send a message"), GetImageIcon("c02228162.jpg"));
+		JMenuItem disconnectAllAction = new JMenuItem(GetStringForLang("Disconnect all"), GetImageIcon("icon_disconnect_agent.bmp.png"));
 		// Add the items to the team menu
 		teamMenu.add(allowConnectionsAction);
 		teamMenu.add(connectToAction);
