@@ -73,6 +73,18 @@ public class Editor extends JFrame {
 			
 			switch (textId)
 			{
+				case "File": translation = "File"; break;
+				case "New": translation = "New"; break;
+				case "Open": translation = "Open"; break;
+				case "Save": translation = "Save"; break;
+				case "Save As": translation = "Save As"; break;
+				case "Run": translation = "Run"; break;
+				case "Exit": translation = "Exit"; break;
+				
+				case "Edit": translation = "Edit"; break;
+				case "Option": translation = "Option"; break;
+				case "Team": translation = "Team"; break;
+				
 				case "Help": translation = "Help"; break;
 				case "About": translation = "About"; break;
 				case "Copying": translation = "Written by: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015-2016\n\nDistributed under the GNU GPL version 3"; break;
@@ -94,6 +106,18 @@ public class Editor extends JFrame {
 			
 			switch (textId)
 			{
+				case "File": translation = "Fichier"; break;
+				case "New": translation = "Nouveau"; break;
+				case "Open": translation = "Ouvrir"; break;
+				case "Save": translation = "Enregistrer"; break;
+				case "Save As": translation = "Enregistrer Sous"; break;
+				case "Run": translation = "Démarrer"; break;
+				case "Exit": translation = "Quitter"; break;
+				
+				case "Edit": translation = "Édition"; break;
+				case "Option": translation = "Options"; break;
+				case "Team": translation = "Équipe"; break;
+				
 				case "Help": translation = "Aide"; break;
 				case "About": translation = "À propos"; break;
 				case "Copying": translation = "Écrit par: \nAlexandre-Xavier Labonté-Lamoureux\nDroits d'auteur(c) 2015-2016\n\nDistribué sous la GNU GPL version 3"; break;
@@ -371,14 +395,14 @@ public class Editor extends JFrame {
 		this.setJMenuBar(menuBar);
 		
 		// File menu
-		JMenu fileMenu = new JMenu("File");
+		JMenu fileMenu = new JMenu(GetStringForLang("File"));
 		menuBar.add(fileMenu);
 		// Create items of the file menu
-		JMenuItem newAction = new JMenuItem("New", GetImageIcon("Document New-01.png"));
-		JMenuItem openAction = new JMenuItem("Open", GetImageIcon("Open_file.png"));
-		JMenuItem saveAction = new JMenuItem("Save", GetImageIcon("save.png"));
-		JMenuItem saveAsAction = new JMenuItem("Save As", GetImageIcon("saveas_icon.gif"));
-		JMenuItem exitAction = new JMenuItem("Exit", GetImageIcon("exit-24-000000.png"));
+		JMenuItem newAction = new JMenuItem(GetStringForLang("New"), GetImageIcon("Document New-01.png"));
+		JMenuItem openAction = new JMenuItem(GetStringForLang("Open"), GetImageIcon("Open_file.png"));
+		JMenuItem saveAction = new JMenuItem(GetStringForLang("Save"), GetImageIcon("save.png"));
+		JMenuItem saveAsAction = new JMenuItem(GetStringForLang("Save As"), GetImageIcon("saveas_icon.gif"));
+		JMenuItem exitAction = new JMenuItem(GetStringForLang("Exit"), GetImageIcon("exit-24-000000.png"));
 		// Add the items to the file menu
 		fileMenu.add(newAction);
 		fileMenu.add(openAction);
@@ -386,7 +410,7 @@ public class Editor extends JFrame {
 		fileMenu.add(saveAsAction);
 		fileMenu.addSeparator();		// Separator
 		// The launcher for external programs: 
-		JMenuItem runAction = new JMenuItem("Run", GetImageIcon("debug.png"));
+		JMenuItem runAction = new JMenuItem(GetStringForLang("Run"), GetImageIcon("debug.png"));
 		fileMenu.add(runAction);
 		fileMenu.addSeparator();	// Separator
 		fileMenu.add(exitAction);
@@ -426,7 +450,7 @@ public class Editor extends JFrame {
 		});
 
 		// Edit menu
-		JMenu editMenu = new JMenu("Edit");
+		JMenu editMenu = new JMenu(GetStringForLang("Edit"));
 		menuBar.add(editMenu);
 		// Create the items of the edit menu
 		JMenuItem undoAction = new JMenuItem("Undo", GetImageIcon("back_undo.png"));
@@ -468,7 +492,7 @@ public class Editor extends JFrame {
 		});
 		
 		// Option menu
-		JMenu optionMenu = new JMenu("Option");
+		JMenu optionMenu = new JMenu(GetStringForLang("Option"));
 		menuBar.add(optionMenu);
 		// Create the items of the option menu
 		JMenuItem increaseAction = new JMenuItem("Increase text size", GetImageIcon("nav_zoomin.png"));
@@ -562,7 +586,7 @@ public class Editor extends JFrame {
 		optionMenu.add(languagesMenu);
 		
 		// Team menu
-		JMenu teamMenu = new JMenu("Team");
+		JMenu teamMenu = new JMenu(GetStringForLang("Team"));
 		menuBar.add(teamMenu);
 		// Create the items of the team menu
 		JCheckBoxMenuItem allowConnectionsAction = new JCheckBoxMenuItem("Allow connections", GetImageIcon("netico.gif"));
