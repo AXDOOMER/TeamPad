@@ -107,6 +107,7 @@ public class Editor extends JFrame {
 				
 				case "Help": translation = "Help"; break;
 				case "About": translation = "About"; break;
+				case "License": translation = "License"; break;
 				case "Copying": translation = "Written by: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015-2016\n\nDistributed under the GNU GPL version 3"; break;
 				
 				case "Size": translation = "Lenght"; break;
@@ -160,6 +161,7 @@ public class Editor extends JFrame {
 				
 				case "Help": translation = "Aide"; break;
 				case "About": translation = "À propos"; break;
+				case "License": translation = "License"; break;
 				case "Copying": translation = "Écrit par: \nAlexandre-Xavier Labonté-Lamoureux\nDroits d'auteur(c) 2015-2016\n\nDistribué sous la GNU GPL version 3"; break;
 				
 				case "Size": translation = "Taille"; break;
@@ -290,6 +292,7 @@ public class Editor extends JFrame {
 			case "saveas_icon.gif": b64string = "R0lGODlhEAAQAMZAAP8A/wAAAB8ubh8yiSMzeylBiC8wMjAwYDA4oDBAoDBIsDBOlDZcoUBAoEBIsEBQwEZGRlBQsGBYsGlaNnB44IdLSouGgI6GiJCI8JCQ/5OiqplqaZ5yPqB3P6CY/6Cg/6OdjrCGjLCo/7y31MC4/8DA/8RyccrE4NGpU9WIhdXV1dfX19zc3ODo8OXl5eXo7efq7ujr7+rs7+zu8O3v8e3v8+/x8fDw8PD4//FtbfT09Pbx4//FxP/LUP/hcf/9nP///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH5BAEKAH8ALAAAAAAQABAAAAejgH+Cg4SFggyIiYqJEIclHkCRkkA4DxKNfwwkGJOROEAPB5gMJRSdODctOTkpggulCrGyChYhPCaOJSUkuyQkFyAaGxWOAsbHFz8+IAajJAMuLCw3Fso9HA+YCyQELCosyT49HQsRoyIEKyzV4hwFBQ6jHwUsJyjtLu8Nox4F1DsoOEAjUCDBqAwFdASYcGKFCx0ECCDANAKCxYsQmmE0xJFQIAA7"; break;
 			case "file_edit.gif": b64string = "R0lGODlhFgAWAOd8AAA8X7P4r3HaT5wlAABbw5u5zc3StQA6qZ6lsCakEWGk1bjL59+mQv/ObBRGoP37+YLV/4bM9x9Xj5p0Z22TsOr01TmN14I2H4KUq//xtmeErZ5rKZjmsdHc7NL/0KCnhVpfeWuDpOJOPqXo/1a5b459bC1608z99KyzuXGnyzx+sqfH6//bm/jDY+v//9zZ2p/4/+Xk44eYq114o215iq/X9M4+IWM0K1CJxvf3937E8/Tx77aUhRqAQEKpTZXd/wB78eHHvf+uN6FaN6zE5pTR8bX09ypswLLu/3LIltTV1tv7/mO77V5wisGCIHC98f/phrLC0LauqJ3n2s/t+rHV3fbf2727uR1xmkvAKtLPz/b38lRni27VdLa7ytv/9sDe9Y8aAJKsuv/ASdiShKvr6jVmqO3u7xZ0zpvX9KGVk2SXwbz6//r8/VPFM875+8GBZf/mrABZvuHf3mqg1WqLu2Cv6Jfq/7y4t1e4/8fEwqh5RP///7X2//b0wMLw/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH5BAEKAIAALAAAAAAWABYAAAj+APkI5POgoMGCOXII3GLFyoOBAl/giaHlSgw9el5I0cJnCxwbIsicGdiBBg0vNEKgaCJDBhcEMQpcADmAh8IOdCysEYPDAgYTKuqYCFFHh5chA8JM2NFmwZM/URBQKYCCipgqYGSkoOJCB4gbUto01dFmjhI+czq06fDmT5U4cVbkAaIiBp82RCxQ4eOCSlskSH4UqdCghQEKErwIbLMCDRg+NYqkmTy5CosxLKA4sTmQCIEafKhQWUJ6yQk/Y1pkYLDHbmcCafi6WPKmzwgtY4TEabHBSxuInou0SVOkOAQIBoQ00KzGBUQ+wV2MGAG47YogUBiU6PAcOoEILt6ouPhywkMAFWY+0Kgz8rnnJ0s4CBDgJkuWHgCwmKjjGjiBJ190kYAPJJCQBAcpWHCEBnN0994bU0xRhhFGADbCE0fM0OBzCxDAxBsW/hBBBDro8IMCGrzQ3QJy2MEGiSNG8MOMMDChwVkcHmBHHzNOdwcETyiwxgwI7NBdBw6YwCOQKGqAAQJeKGFkd03VsQYFIciAghYxnLHDQ91BdMYLL5yxxRZhdhcQADs="; break;
 			case "spellcheck.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJ0SURBVHjaYvz//z8DJQAggJgYKAQAAcQCIpz7bGdys3MZbMreae7QaxPPzcFZ/uHDp8OMjAyKR6pOuukXaJX8/f3X/Me3P+8Y/v1nuLPwXjrMAIAAYgR5wW+q+8nf/35//PbzZ8W/v/90gYqtjtWcSrdpt7j26dkHZzZejr1n2i5oYXMBQAAxOvfZxP/9/9/q37//t//9+asK1HyMhYO1/OfnH0++vv96//e3P8f+/mWwurPgbjqyRvGCGRyvXpn9BQggJhYW5uh///8LATWqcnFzeP76/pvh84uPh082nXP78/2f0J+f/17x8PLYotgad8H4lZDTBQYGpokAAcQCtJn/YPFRN5CESaX+zN/ff4uy8bDbqiQqz+Tk4pD7+eXXhc/vPm3UTNLY9effHykDGTsZcaManjdf/nz4++JHE0AAMRIbjYxR5yQY1Hj2u6tzaxy5+/Xr111v9P8fsroLEEAMIAPAhtTeTGAov+kK4yNjhtCzPuK9d/8Ernjyn7n2+jsGy8PSMDmAAGKBW/GD4ZSkHtc5xpobqxle/Un7P0vnO2PEOSYGFoaJlp6iOeLsTAzrz35+wXDgleH/U3YvYNoAAgjFC4xpV6p9vURatt358vzviU9pDAocte76vGacTEwMG06/f8xw4J3Z/wsIzSAAEECoBsRdYGFQ4DodZsBv8Pj9DwZ9UQ6GFx9+M2w48eE+w4E3Vv+vObxADxuAAMIIREavUwrCNkJ30oz5ma8+/86w6di7O0Cbbf/fcnqBLXABAogBa6CZHixymnb/P0Py+XsMirslsKmBYYAAwi2hubeDQRa/ZhAGCCBGSrMzQIABAIDZeasHWK/yAAAAAElFTkSuQmCC"; break;
+			case "License.png": b64string = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACJUlEQVR4Xo2RS2tTQRiGnzEpp6bakDRa01Z7S6tYsbjxsvAXiAVRXAgqrgviTpfuXIluXLlSV4Ig2JX+BOvGtlYiSlGb2ubWi01j25x5jXM8hEgXPjDMMLzz8gyfkcSLqVXF2jx2ovXbOzpf3yVazbPVlmbp3D1W9g5y6XjcWFmiAH7Nsr/NsBPey9vs644R7eqnVt3AvrxD6cpzAHzfDwpqNQvA5OQsHakEpeIyAPvaPYaW51kzHnazyq5IhNpaNMyzWak0DKxAEn19abdC1pWkZT1ffwzb25aqEi4PsPJzPTTwXUGiI4mlGW7cJ//gIiHVyzddHmB3a9IEBr5FQCFfpLduMPM+S4MUFzIxPnzeYKS+v01nXB6gIxXT3wI5A2uDopHRwzTxBk6cGWKrkEMK8iGuwPoWi0imUliJj1OfaADme4Xk3DTlqIdFLt9cICHB0uIivYPdHDl2GBCSMG5KhoLxwAd/28dGmg2QFdYGJrKQncnSAIZ9WB2fIP5ozI1S9t8CEUyh8wCSyIwMYzAIAYby+CsSR08yPfaYbhkkePrkmSmWi4riEBIUcjnSPWliXiR8zJfZLBDH2/Rp6R+lPXMQZhe5dv2qmgx8t8T81xzFHwsISKW7KOXLANSi8xQXFhioF0g0fyEsOXX2NAADQ4dwCAYzwRkDmfpZNGOA+MOJuRWXCaxBoEYiQGBM4/7W+f49kioG6AFagRj/Twn4Jan0G1zfF0rIahXbAAAAAElFTkSuQmCC"; break;
 			//case "": b64string = ""; break;
 			
 			default: System.err.println("Base64 data for image '" + textId + "' not found.");
@@ -761,8 +764,10 @@ public class Editor extends JFrame {
 		JMenu helpMenu = new JMenu(GetStringForLang("Help"));
 		menuBar.add(helpMenu);
 		// Create the menu items
+		JMenuItem licenseAction = new JMenuItem(GetStringForLang("License"), GetImageIcon("License.png"));
 		JMenuItem aboutAction = new JMenuItem(GetStringForLang("About"), GetImageIcon("iconInfo.gif"));
 		// Add the help to the option menu
+		helpMenu.add(licenseAction);
 		helpMenu.add(aboutAction);
 		
 		// Display the window
@@ -774,6 +779,12 @@ public class Editor extends JFrame {
 			public void actionPerformed(ActionEvent arg) {
 				//JOptionPane.showMessageDialog(null, "Written by: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015\n\nDistributed under the GNU GPL version 3", "About", JOptionPane.INFORMATION_MESSAGE);
 				JOptionPane.showMessageDialog(mainWindowReference, GetStringForLang("Copying"), GetStringForLang("About"), JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		
+		licenseAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg) {
+				JOptionPane.showMessageDialog(mainWindowReference, "TeamPad: A simple cooperative text editor\nCopyright (C) 2015-2016  Alexandre-Xavier Labonté-Lamoureux\n\nThis program is free software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with this program.  If not, see <http://www.gnu.org/licenses/>.", GetStringForLang("License"), JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 
