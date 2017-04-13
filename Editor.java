@@ -56,201 +56,7 @@ public class Editor extends JFrame {
 	BufferedReader reader = null;
 	PrintWriter writer = null;
 
-	public static String GetStringForLang(String textId) {
-		
-		String translation = "?";
-		
-		if (textId.length() > 5) {
-			translation = "?????";
-		}
-		
-		if (language.equals("English")) {
-			
-			switch (textId)
-			{
-				case "File": translation = "File"; break;
-				case "New": translation = "New"; break;
-				case "Open": translation = "Open"; break;
-				case "Save": translation = "Save"; break;
-				case "Save As": translation = "Save As"; break;
-				case "Run": translation = "Run"; break;
-				case "Exit": translation = "Exit"; break;
-				
-				case "Edit": translation = "Edit"; break;
-				case "Undo": translation = "Undo"; break;
-				case "Redo": translation = "Redo"; break;
-				case "Cut": translation = "Cut"; break;
-				case "Copy": translation = "Copy"; break;
-				case "Paste": translation = "Paste"; break;
-				case "Select All": translation = "Select All"; break;
-				case "Select Line": translation = "Select Line"; break;
-				case "Find and replace": translation = "Find and replace"; break;
-				
-				case "Option": translation = "Option"; break;
-				case "Increase text size": translation = "Increase text size"; break;
-				case "Decrease text size": translation = "Decrease text size"; break;
-				case "Word warp": translation = "Word warp"; break;
-				case "Status bar": translation = "Status bar"; break;
-				case "Font": translation = "Font"; break;
-				case "Language": translation = "Language"; break;
-				
-				case "Team": translation = "Team"; break;
-				case "Allow connections": translation = "Allow connections"; break;
-				case "Connect to": translation = "Connect to..."; break;
-				case "Send a message": translation = "Send a message..."; break;
-				case "Disconnect all": translation = "Disconnect all"; break;
-				
-				case "Help": translation = "Help"; break;
-				case "About": translation = "About"; break;
-				case "License": translation = "License"; break;
-				case "Copying": translation = "Written by: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015-2016\n\nDistributed under the GNU GPL version 3"; break;
-				
-				case "Size": translation = "Lenght"; break;
-				case "Line": translation = "Line"; break;
-				case "Notice": translation = "Notice"; break;
-				case "RestartTranslate": translation = "The interface will be completly translated only once you will restart the program."; break;
-			
-				case "AskIP": translation = "Connection to another pad"; break;
-				case "EnterIP": translation = "Enter the IP address of the computer you wish to connect to:"; break;
-				
-				case "SystemInfo": translation = "System Info"; break;
-				case "CommandLine": translation = "Command line"; break;
-				case "EnterPath": translation = "Enter the path to a program to execute it:"; break;
-			}
-			
-		} else if (language.equals("French")) {
-			
-			switch (textId)
-			{
-				case "File": translation = "Fichier"; break;
-				case "New": translation = "Nouveau"; break;
-				case "Open": translation = "Ouvrir"; break;
-				case "Save": translation = "Enregistrer"; break;
-				case "Save As": translation = "Enregistrer Sous"; break;
-				case "Run": translation = "Démarrer"; break;
-				case "Exit": translation = "Quitter"; break;
-				
-				case "Edit": translation = "Édition"; break;
-				case "Undo": translation = "Retour"; break;
-				case "Redo": translation = "Refaire"; break;
-				case "Cut": translation = "Couper"; break;
-				case "Copy": translation = "Copier"; break;
-				case "Paste": translation = "Coller"; break;
-				case "Select All": translation = "Tout sélectionner"; break;
-				case "Select Line": translation = "Sélectionner la ligne"; break;
-				case "Find and replace": translation = "Trouver et remplacer"; break;
-				
-				case "Option": translation = "Options"; break;
-				case "Increase text size": translation = "Augmenter la taille du texte"; break;
-				case "Decrease text size": translation = "Réduire la taille du texte"; break;
-				case "Word warp": translation = "Retour à la ligne"; break;
-				case "Status bar": translation = "Barre d'état"; break;
-				case "Font": translation = "Police"; break;
-				case "Language": translation = "Langue"; break;
-				
-				case "Team": translation = "Équipe"; break;
-				case "Allow connections": translation = "Permettre des connexions"; break;
-				case "Connect to": translation = "Se connecter..."; break;
-				case "Send a message": translation = "Envoyer un message..."; break;
-				case "Disconnect all": translation = "Tout déconnecter"; break;
-				
-				case "Help": translation = "Aide"; break;
-				case "About": translation = "À propos"; break;
-				case "License": translation = "License"; break;
-				case "Copying": translation = "Écrit par: \nAlexandre-Xavier Labonté-Lamoureux\nDroits d'auteur(c) 2015-2016\n\nDistribué sous la GNU GPL version 3"; break;
-				
-				case "Size": translation = "Taille"; break;
-				case "Line": translation = "Ligne"; break;
-				case "Notice": translation = "Avertissement"; break;
-				case "RestartTranslate": translation = "L'interface sera complètement traduite que lorsque vous aurez redémarré le logicel."; break;
-			
-				case "AskIP": translation = "Connexion à un autre Pad"; break;
-				case "EnterIP": translation = "Entrez l'adresse IP à laquelle vous voulez vous connecter:"; break;
-				
-				case "SystemInfo": translation = "Information sur le système"; break;
-				case "CommandLine": translation = "Ligne de commande"; break;
-				case "EnterPath": translation = "Entrez le chemin vers le logiciel à exécuter:"; break;
-			}
-			
-		} else if (language.equals("German")) {
-			
-			switch (textId)
-			{
-				case "Help": translation = "Hilfe"; break;
-				case "About": translation = "Über"; break;
-				case "Copying": translation = "Geschrieben von: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015-2016\n\nUnter der GNU GPL version 3"; break;
-			
-				case "Size": translation = "Größe"; break;
-				case "Notice": translation = "Beachten"; break;
-				
-				case "SystemInfo": translation = "Systeminformationen"; break;
-				case "CommandLine": translation = "Kommandozeilen"; break;
-				case "EnterPath": translation = "Software starten pfad"; break;
-			}
-			
-		} else if (language.equals("Russian")) {
-			
-			switch (textId)
-			{
-				case "Help": translation = "Помогите"; break;
-				case "About": translation = "около"; break;
-				case "Copying": translation = "написано: \nAlexandre-Xavier Labonté-Lamoureux\nАвторские права 2015-2016\n\nРаспространяется под GNU GPL версии 3"; break;
-			
-				case "Size": translation = "размер"; break;
-				case "Notice": translation = "уведомление"; break;
-				
-				case "SystemInfo": translation = "системная информация"; break;
-				case "CommandLine": translation = "командной строки"; break;
-				case "EnterPath": translation = "Путь программного обеспечения для запуска"; break;
-			}
-		} else if (language.equals("Chinese")) {
-			
-			switch (textId)
-			{
-				case "Help": translation = "帮助"; break;
-				case "About": translation = "关于"; break;
-				case "Copying": translation = "书面 \nAlexandre-Xavier Labonté-Lamoureux\n版权 2015-2016\n\n在GNU GPL3版本下发布"; break;
-				
-				case "Size": translation = "大小"; break;
-				case "Line": translation = "线"; break;
-				case "Notice": translation = "警告"; break;
-				case "RestartTranslate": translation = "该界面将充分体现直至软件重新启动。"; break;
-			
-				case "AskIP": translation = "登录"; break;
-				case "EnterIP": translation = "输入IP地址连接"; break;
-				
-				case "SystemInfo": translation = "系统信息"; break;
-				case "CommandLine": translation = "命令行"; break;
-				case "EnterPath": translation = "输入到软件运行的路径"; break;
-			}
-		} else if (language.equals("Spanish")) {
-			
-			switch (textId)
-			{
-				case "Help": translation = "Ayudar"; break;
-				case "About": translation = "A proposito"; break;
-				case "Copying": translation = "Escrito por: \nAlexandre-Xavier Labonté-Lamoureux\nDerechos de autor(c) 2015-2016\n\nDistribuido bajo la GNU GPL versión 3"; break;
-				
-				case "Size": translation = "Tamaño"; break;
-				case "Line": translation = "Línea"; break;
-				case "Notice": translation = "Advertencia"; break;
-				case "RestartTranslate": translation = "Reinicie el software para traducir la interfaz completamente."; break;
-			
-				case "AskIP": translation = "Conexión a otro"; break;
-				case "EnterIP": translation = "Introduzca la dirección IP a la que desea conectarse:"; break;
-				
-				case "SystemInfo": translation = "Información del sistema"; break;
-				case "CommandLine": translation = "Línea de comandos"; break;
-				case "EnterPath": translation = "Introduzca la ruta de acceso al software para ejecutar:"; break;
-			}
-		} else {
-			
-			System.err.println("Language '" + language + "' is undefined.");
-			System.exit(0);
-		}
-		
-		return translation;
-	}
+	Language lang = new Language(language);
 
 	public Editor(String[] args) {
 		mainWindowReference = this;
@@ -378,14 +184,14 @@ public class Editor extends JFrame {
 		this.setJMenuBar(menuBar);
 		
 		// File menu
-		JMenu fileMenu = new JMenu(GetStringForLang("File"));
+		JMenu fileMenu = new JMenu(lang.GetStringForLang("File"));
 		menuBar.add(fileMenu);
 		// Create items of the file menu
-		JMenuItem newAction = new JMenuItem(GetStringForLang("New"), new ProxyImageIcon("Document New-01.png"));
-		JMenuItem openAction = new JMenuItem(GetStringForLang("Open"), new ProxyImageIcon("Open_file.png"));
-		JMenuItem saveAction = new JMenuItem(GetStringForLang("Save"), new ProxyImageIcon("save.png"));
-		JMenuItem saveAsAction = new JMenuItem(GetStringForLang("Save As"), new ProxyImageIcon("saveas_icon.gif"));
-		JMenuItem exitAction = new JMenuItem(GetStringForLang("Exit"), new ProxyImageIcon("exit-24-000000.png"));
+		JMenuItem newAction = new JMenuItem(lang.GetStringForLang("New"), new ProxyImageIcon("Document New-01.png"));
+		JMenuItem openAction = new JMenuItem(lang.GetStringForLang("Open"), new ProxyImageIcon("Open_file.png"));
+		JMenuItem saveAction = new JMenuItem(lang.GetStringForLang("Save"), new ProxyImageIcon("save.png"));
+		JMenuItem saveAsAction = new JMenuItem(lang.GetStringForLang("Save As"), new ProxyImageIcon("saveas_icon.gif"));
+		JMenuItem exitAction = new JMenuItem(lang.GetStringForLang("Exit"), new ProxyImageIcon("exit-24-000000.png"));
 		// Add the items to the file menu
 		fileMenu.add(newAction);
 		fileMenu.add(openAction);
@@ -393,7 +199,7 @@ public class Editor extends JFrame {
 		fileMenu.add(saveAsAction);
 		fileMenu.addSeparator();		// Separator
 		// The launcher for external programs: 
-		JMenuItem runAction = new JMenuItem(GetStringForLang("Run"), new ProxyImageIcon("debug.png"));
+		JMenuItem runAction = new JMenuItem(lang.GetStringForLang("Run"), new ProxyImageIcon("debug.png"));
 		fileMenu.add(runAction);
 		fileMenu.addSeparator();	// Separator
 		fileMenu.add(exitAction);
@@ -433,17 +239,17 @@ public class Editor extends JFrame {
 		});
 
 		// Edit menu
-		JMenu editMenu = new JMenu(GetStringForLang("Edit"));
+		JMenu editMenu = new JMenu(lang.GetStringForLang("Edit"));
 		menuBar.add(editMenu);
 		// Create the items of the edit menu
-		JMenuItem undoAction = new JMenuItem(GetStringForLang("Undo"), new ProxyImageIcon("back_undo.png"));
-		JMenuItem redoAction = new JMenuItem(GetStringForLang("Redo"), new ProxyImageIcon("botao-refazer.png"));
-		JMenuItem cutAction = new JMenuItem(GetStringForLang("Cut"), new ProxyImageIcon("mai1444425541180_lowres_en-us.png"));
-		JMenuItem copyAction = new JMenuItem(GetStringForLang("Copy"), new ProxyImageIcon("icon_copy_n.png"));
-		JMenuItem pasteAction = new JMenuItem(GetStringForLang("Paste"), new ProxyImageIcon("1398640998.png"));
-		JMenuItem selectAllAction = new JMenuItem(GetStringForLang("Select All"), new ProxyImageIcon("edit_select_all.png"));
-		JMenuItem selectLineAction = new JMenuItem(GetStringForLang("Select Line"), new ProxyImageIcon("editor_panel_tab_icon.gif"));
-		JMenuItem findAction = new JMenuItem(GetStringForLang("Find and replace"), new ProxyImageIcon("edit_find_replace.png"));
+		JMenuItem undoAction = new JMenuItem(lang.GetStringForLang("Undo"), new ProxyImageIcon("back_undo.png"));
+		JMenuItem redoAction = new JMenuItem(lang.GetStringForLang("Redo"), new ProxyImageIcon("botao-refazer.png"));
+		JMenuItem cutAction = new JMenuItem(lang.GetStringForLang("Cut"), new ProxyImageIcon("mai1444425541180_lowres_en-us.png"));
+		JMenuItem copyAction = new JMenuItem(lang.GetStringForLang("Copy"), new ProxyImageIcon("icon_copy_n.png"));
+		JMenuItem pasteAction = new JMenuItem(lang.GetStringForLang("Paste"), new ProxyImageIcon("1398640998.png"));
+		JMenuItem selectAllAction = new JMenuItem(lang.GetStringForLang("Select All"), new ProxyImageIcon("edit_select_all.png"));
+		JMenuItem selectLineAction = new JMenuItem(lang.GetStringForLang("Select Line"), new ProxyImageIcon("editor_panel_tab_icon.gif"));
+		JMenuItem findAction = new JMenuItem(lang.GetStringForLang("Find and replace"), new ProxyImageIcon("edit_find_replace.png"));
 		// Add the items to the edit menu
 		editMenu.add(undoAction);
 		editMenu.add(redoAction);
@@ -475,10 +281,10 @@ public class Editor extends JFrame {
 		});
 		
 		// Option menu
-		JMenu optionMenu = new JMenu(GetStringForLang("Option"));
+		JMenu optionMenu = new JMenu(lang.GetStringForLang("Option"));
 		menuBar.add(optionMenu);
 		// Create the items of the option menu
-		JMenuItem increaseAction = new JMenuItem(GetStringForLang("Increase text size"), new ProxyImageIcon("nav_zoomin.png"));
+		JMenuItem increaseAction = new JMenuItem(lang.GetStringForLang("Increase text size"), new ProxyImageIcon("nav_zoomin.png"));
 		// Add an action to zoom in
 		increaseAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
@@ -487,7 +293,7 @@ public class Editor extends JFrame {
 			}
 		});
 		
-		JMenuItem decreaseAction = new JMenuItem(GetStringForLang("Decrease text size"), new ProxyImageIcon("nav_zoomout.png"));
+		JMenuItem decreaseAction = new JMenuItem(lang.GetStringForLang("Decrease text size"), new ProxyImageIcon("nav_zoomout.png"));
 		// Add an action to zoom out
 		decreaseAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
@@ -496,11 +302,11 @@ public class Editor extends JFrame {
 			}
 		});
 
-		JCheckBoxMenuItem wordWarpAction = new JCheckBoxMenuItem(GetStringForLang("Word warp"), new ProxyImageIcon("WordWrap.png"));
-		JCheckBoxMenuItem statusBarAction = new JCheckBoxMenuItem(GetStringForLang("Status bar"), new ProxyImageIcon("ui-status-bar.png"));
+		JCheckBoxMenuItem wordWarpAction = new JCheckBoxMenuItem(lang.GetStringForLang("Word warp"), new ProxyImageIcon("WordWrap.png"));
+		JCheckBoxMenuItem statusBarAction = new JCheckBoxMenuItem(lang.GetStringForLang("Status bar"), new ProxyImageIcon("ui-status-bar.png"));
 		
 		// Fonts
-		JMenuItem fontsAction = new JMenuItem(GetStringForLang("Font"), new ProxyImageIcon("truetype.gif"));
+		JMenuItem fontsAction = new JMenuItem(lang.GetStringForLang("Font"), new ProxyImageIcon("truetype.gif"));
 
 		fontsAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
@@ -530,7 +336,7 @@ public class Editor extends JFrame {
 		});	
 
 		// Languages
-		JMenu languagesMenu = new JMenu(GetStringForLang("Language"));
+		JMenu languagesMenu = new JMenu(lang.GetStringForLang("Language"));
 		languagesMenu.setIcon(new ProxyImageIcon("bubble_icon.gif"));
 		ButtonGroup languagesGroup = new ButtonGroup();
 		String[] languages = {"Chinese", "English", "French", "German", "Japanese", "Spanish", "Russian"};
@@ -550,7 +356,8 @@ public class Editor extends JFrame {
 				public void actionPerformed(ActionEvent arg) {
 					if (language != ((JRadioButtonMenuItem) arg.getSource()).getText()) {
 						language = ((JRadioButtonMenuItem) arg.getSource()).getText();
-						JOptionPane.showMessageDialog(mainWindowReference, GetStringForLang("RestartTranslate"), GetStringForLang("Notice"), JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(mainWindowReference, lang.GetStringForLang("RestartTranslate"), lang.GetStringForLang("Notice"), JOptionPane.INFORMATION_MESSAGE);
+						lang.setLanguage(language);
 					}
 				}
 			});
@@ -569,13 +376,13 @@ public class Editor extends JFrame {
 		optionMenu.add(languagesMenu);
 		
 		// Team menu
-		JMenu teamMenu = new JMenu(GetStringForLang("Team"));
+		JMenu teamMenu = new JMenu(lang.GetStringForLang("Team"));
 		menuBar.add(teamMenu);
 		// Create the items of the team menu
-		JCheckBoxMenuItem allowConnectionsAction = new JCheckBoxMenuItem(GetStringForLang("Allow connections"), new ProxyImageIcon("netico.gif"));
-		JMenuItem connectToAction = new JMenuItem(GetStringForLang("Connect to"), new ProxyImageIcon("network_icon.jpg"));
-		JMenuItem sendMessageAction = new JMenuItem(GetStringForLang("Send a message"), new ProxyImageIcon("c02228162.jpg"));
-		JMenuItem disconnectAllAction = new JMenuItem(GetStringForLang("Disconnect all"), new ProxyImageIcon("icon_disconnect_agent.bmp.png"));
+		JCheckBoxMenuItem allowConnectionsAction = new JCheckBoxMenuItem(lang.GetStringForLang("Allow connections"), new ProxyImageIcon("netico.gif"));
+		JMenuItem connectToAction = new JMenuItem(lang.GetStringForLang("Connect to"), new ProxyImageIcon("network_icon.jpg"));
+		JMenuItem sendMessageAction = new JMenuItem(lang.GetStringForLang("Send a message"), new ProxyImageIcon("c02228162.jpg"));
+		JMenuItem disconnectAllAction = new JMenuItem(lang.GetStringForLang("Disconnect all"), new ProxyImageIcon("icon_disconnect_agent.bmp.png"));
 		// Add the items to the team menu
 		teamMenu.add(allowConnectionsAction);
 		teamMenu.add(connectToAction);
@@ -608,8 +415,8 @@ public class Editor extends JFrame {
 					if (sock == null) {
 						String ip = (String)JOptionPane.showInputDialog(
 							mainWindowReference,
-							GetStringForLang("EnterIP"),
-							GetStringForLang("AskIP"),
+							lang.GetStringForLang("EnterIP"),
+							lang.GetStringForLang("AskIP"),
 							JOptionPane.PLAIN_MESSAGE,
 							new ProxyImageIcon("network_icon.jpg"),
 							null,
@@ -701,11 +508,11 @@ public class Editor extends JFrame {
 		});
 		
 		// Help menu
-		JMenu helpMenu = new JMenu(GetStringForLang("Help"));
+		JMenu helpMenu = new JMenu(lang.GetStringForLang("Help"));
 		menuBar.add(helpMenu);
 		// Create the menu items
-		JMenuItem licenseAction = new JMenuItem(GetStringForLang("License"), new ProxyImageIcon("License.png"));
-		JMenuItem aboutAction = new JMenuItem(GetStringForLang("About"), new ProxyImageIcon("iconInfo.gif"));
+		JMenuItem licenseAction = new JMenuItem(lang.GetStringForLang("License"), new ProxyImageIcon("License.png"));
+		JMenuItem aboutAction = new JMenuItem(lang.GetStringForLang("About"), new ProxyImageIcon("iconInfo.gif"));
 		// Add the help to the option menu
 		helpMenu.add(licenseAction);
 		helpMenu.add(aboutAction);
@@ -718,13 +525,13 @@ public class Editor extends JFrame {
 		aboutAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				//JOptionPane.showMessageDialog(null, "Written by: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015\n\nDistributed under the GNU GPL version 3", "About", JOptionPane.INFORMATION_MESSAGE);
-				JOptionPane.showMessageDialog(mainWindowReference, GetStringForLang("Copying"), GetStringForLang("About"), JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(mainWindowReference, lang.GetStringForLang("Copying"), lang.GetStringForLang("About"), JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		
 		licenseAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
-				JOptionPane.showMessageDialog(mainWindowReference, "TeamPad: A simple cooperative text editor\nCopyright (C) 2015-2016  Alexandre-Xavier Labonté-Lamoureux\n\nThis program is free software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with this program.  If not, see <http://www.gnu.org/licenses/>.", GetStringForLang("License"), JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(mainWindowReference, "TeamPad: A simple cooperative text editor\nCopyright (C) 2015-2016  Alexandre-Xavier Labonté-Lamoureux\n\nThis program is free software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with this program.  If not, see <http://www.gnu.org/licenses/>.", lang.GetStringForLang("License"), JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 
@@ -732,8 +539,8 @@ public class Editor extends JFrame {
 			public void actionPerformed(ActionEvent arg) {
 				String p = (String)JOptionPane.showInputDialog(
 					mainWindowReference,
-					GetStringForLang("EnterPath"),
-					GetStringForLang("CommandLine"),
+					lang.GetStringForLang("EnterPath"),
+					lang.GetStringForLang("CommandLine"),
 					JOptionPane.INFORMATION_MESSAGE,
 					new ProxyImageIcon("debug.png"),
 					null,
@@ -778,13 +585,13 @@ public class Editor extends JFrame {
 			// This counts the file size, not the characters. 
 			// If we want to count the characters, we need to remove the special ones (Unicode and control characters).
 			public void changedUpdate(DocumentEvent e) {
-				lengthLabel.setText(GetStringForLang("Size") + " " + (txtArea.getText()).length());
+				lengthLabel.setText(lang.GetStringForLang("Size") + " " + (txtArea.getText()).length());
 			}
 			public void insertUpdate(DocumentEvent e) {
-				lengthLabel.setText(GetStringForLang("Size") + " " + (txtArea.getText()).length());
+				lengthLabel.setText(lang.GetStringForLang("Size") + " " + (txtArea.getText()).length());
 			}
 			public void removeUpdate(DocumentEvent e) {
-				lengthLabel.setText(GetStringForLang("Size") + " " + (txtArea.getText()).length());
+				lengthLabel.setText(lang.GetStringForLang("Size") + " " + (txtArea.getText()).length());
 			}
 		});
 		
@@ -802,7 +609,7 @@ public class Editor extends JFrame {
 					"Java " + System.getProperty("java.version") + " " + System.getProperty("java.vendor") + "\n" +
 					System.getProperty("os.name") + " (" + System.getProperty("os.version") + ") " + 
 					System.getProperty("os.arch") + " " + Runtime.getRuntime().availableProcessors() + "-cores", 
-					GetStringForLang("SystemInfo"),
+					lang.GetStringForLang("SystemInfo"),
 					JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
@@ -818,7 +625,7 @@ public class Editor extends JFrame {
 		txtArea.addCaretListener(new CaretListener() {
 			public void caretUpdate(CaretEvent e) {
 				try {
-					lineLabel.setText(GetStringForLang("Line") + " " + (txtArea.getLineOfOffset(txtArea.getCaretPosition()) + 1));
+					lineLabel.setText(lang.GetStringForLang("Line") + " " + (txtArea.getLineOfOffset(txtArea.getCaretPosition()) + 1));
 				} catch (BadLocationException ex) {
 					System.err.println(ex.getMessage());
 				}
