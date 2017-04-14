@@ -21,7 +21,7 @@ public class Language {
 		language = lang;
 	}
 
-	public void setLanguage(String lang) {
+	public void changeLanguage(String lang) {
 		language = lang;
 	}
 
@@ -72,7 +72,7 @@ public class Language {
 				case "Help": translation = "Help"; break;
 				case "About": translation = "About"; break;
 				case "License": translation = "License"; break;
-				case "Copying": translation = "Written by: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015-2016\n\nDistributed under the GNU GPL version 3"; break;
+				case "Copying": translation = "Written by: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015-2017\n\nDistributed under the GNU GPL version 3"; break;
 				
 				case "Size": translation = "Lenght"; break;
 				case "Line": translation = "Line"; break;
@@ -126,7 +126,7 @@ public class Language {
 				case "Help": translation = "Aide"; break;
 				case "About": translation = "À propos"; break;
 				case "License": translation = "License"; break;
-				case "Copying": translation = "Écrit par: \nAlexandre-Xavier Labonté-Lamoureux\nDroits d'auteur(c) 2015-2016\n\nDistribué sous la GNU GPL version 3"; break;
+				case "Copying": translation = "Écrit par: \nAlexandre-Xavier Labonté-Lamoureux\nDroits d'auteur(c) 2015-2017\n\nDistribué sous la GNU GPL version 3"; break;
 				
 				case "Size": translation = "Taille"; break;
 				case "Line": translation = "Ligne"; break;
@@ -147,7 +147,7 @@ public class Language {
 			{
 				case "Help": translation = "Hilfe"; break;
 				case "About": translation = "Über"; break;
-				case "Copying": translation = "Geschrieben von: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015-2016\n\nUnter der GNU GPL version 3"; break;
+				case "Copying": translation = "Geschrieben von: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015-2017\n\nUnter der GNU GPL version 3"; break;
 			
 				case "Size": translation = "Größe"; break;
 				case "Notice": translation = "Beachten"; break;
@@ -163,7 +163,7 @@ public class Language {
 			{
 				case "Help": translation = "Помогите"; break;
 				case "About": translation = "около"; break;
-				case "Copying": translation = "написано: \nAlexandre-Xavier Labonté-Lamoureux\nАвторские права 2015-2016\n\nРаспространяется под GNU GPL версии 3"; break;
+				case "Copying": translation = "написано: \nAlexandre-Xavier Labonté-Lamoureux\nАвторские права 2015-2017\n\nРаспространяется под GNU GPL версии 3"; break;
 			
 				case "Size": translation = "размер"; break;
 				case "Notice": translation = "уведомление"; break;
@@ -178,7 +178,7 @@ public class Language {
 			{
 				case "Help": translation = "帮助"; break;
 				case "About": translation = "关于"; break;
-				case "Copying": translation = "书面 \nAlexandre-Xavier Labonté-Lamoureux\n版权 2015-2016\n\n在GNU GPL3版本下发布"; break;
+				case "Copying": translation = "书面 \nAlexandre-Xavier Labonté-Lamoureux\n版权 2015-2017\n\n在GNU GPL3版本下发布"; break;
 				
 				case "Size": translation = "大小"; break;
 				case "Line": translation = "线"; break;
@@ -198,7 +198,7 @@ public class Language {
 			{
 				case "Help": translation = "Ayudar"; break;
 				case "About": translation = "A proposito"; break;
-				case "Copying": translation = "Escrito por: \nAlexandre-Xavier Labonté-Lamoureux\nDerechos de autor(c) 2015-2016\n\nDistribuido bajo la GNU GPL versión 3"; break;
+				case "Copying": translation = "Escrito por: \nAlexandre-Xavier Labonté-Lamoureux\nDerechos de autor(c) 2015-2017\n\nDistribuido bajo la GNU GPL versión 3"; break;
 				
 				case "Size": translation = "Tamaño"; break;
 				case "Line": translation = "Línea"; break;

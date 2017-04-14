@@ -357,7 +357,7 @@ public class Editor extends JFrame {
 					if (language != ((JRadioButtonMenuItem) arg.getSource()).getText()) {
 						language = ((JRadioButtonMenuItem) arg.getSource()).getText();
 						JOptionPane.showMessageDialog(mainWindowReference, lang.GetStringForLang("RestartTranslate"), lang.GetStringForLang("Notice"), JOptionPane.INFORMATION_MESSAGE);
-						lang.setLanguage(language);
+						lang.changeLanguage(language);
 					}
 				}
 			});
@@ -524,14 +524,13 @@ public class Editor extends JFrame {
 		// Add an action
 		aboutAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
-				//JOptionPane.showMessageDialog(null, "Written by: \nAlexandre-Xavier Labonté-Lamoureux\nCopyright(c) 2015\n\nDistributed under the GNU GPL version 3", "About", JOptionPane.INFORMATION_MESSAGE);
 				JOptionPane.showMessageDialog(mainWindowReference, lang.GetStringForLang("Copying"), lang.GetStringForLang("About"), JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		
 		licenseAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
-				JOptionPane.showMessageDialog(mainWindowReference, "TeamPad: A simple cooperative text editor\nCopyright (C) 2015-2016  Alexandre-Xavier Labonté-Lamoureux\n\nThis program is free software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with this program.  If not, see <http://www.gnu.org/licenses/>.", lang.GetStringForLang("License"), JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(mainWindowReference, "TeamPad: A simple cooperative text editor\nCopyright (C) 2015-2017  Alexandre-Xavier Labonté-Lamoureux\n\nThis program is free software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with this program.  If not, see <http://www.gnu.org/licenses/>.", lang.GetStringForLang("License"), JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 
@@ -566,12 +565,14 @@ public class Editor extends JFrame {
 				// the component was resized...
 				System.out.println("window resized: (" + mainWindowReference.getWidth() + "," + mainWindowReference.getHeight() + ")");
 				scrollPane.setPreferredSize(new Dimension(mainWindowReference.getWidth() - 40, mainWindowReference.getHeight() - 100));
+				mainFrame.revalidate();
 			}
 		});
 		this.addWindowStateListener(new WindowStateListener() {
 			public void windowStateChanged(WindowEvent ev) {
 				System.out.println("window state changed: " + ev);
 				scrollPane.setPreferredSize(new Dimension(mainWindowReference.getWidth() - 40, mainWindowReference.getHeight() - 100));
+				mainFrame.revalidate();
 			}
 		});
 		/*

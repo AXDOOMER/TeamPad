@@ -17,8 +17,8 @@
 
 import java.io.Serializable;
 
-class TextUpdate implements Serializable
-{
+class TextUpdate implements Serializable {
+
 	private String text;
 	private int start;
 	private int end;
